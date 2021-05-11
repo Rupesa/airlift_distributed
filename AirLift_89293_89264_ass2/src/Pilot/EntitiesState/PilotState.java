@@ -1,42 +1,44 @@
 package Pilot.EntitiesState;
 
-/** 
- *    Definition of the internal states of the pilot during his life cycle.
+/**
+ * Definition of the internal states of the pilot during his life cycle.
  */
-public class PilotState {
+public enum PilotState {
     
     /**
-    *   The pilot returns to the airport and prepares for a new departure. 
-    */
-    public static final int ATGR = 0;
-        
+     * The pilot returns to the airport and prepares for a new departure. 
+     */
+    AT_TRANSFER_GATE("ATGR"),
+       
     /**
-    *   The pilot announces that he is ready for boarding.
-    */
-    public static final int RDFB = 1;
+     * The pilot announces that he is ready for boarding.
+     */
+    READY_FOR_FOARDING("RDFB"),
     
     /**
-    *   The pilot waits the plane to be ready to board.
-    */
-    public static final int WTFB = 2;
+     * The pilot waits the plane to be ready to board.
+     */
+    WAITING_FOR_BOARDING("WTFB"),
     
     /**
-    *   The pilot flies to the destination airport.
-    */
-    public static final int FLFW = 3;
-    
+     * The pilot flies to the destination airport.
+     */
+    FLYING_FORWARD("FLFW"),
+
     /**
-    *   The pilot arrives at the destination airport and waits passengers to disembark.
-    */
-    public static final int DRPP = 4;
-    
+     * The pilot arrives at the destination airport and waits passengers to disembark.
+     */    
+    DEBOARDING("DRPP"),
+
     /**
-    *   The pilot flies brack to the departure airport.
-    */
-    public static final int FLBK = 5;
+     * The pilot flies brack to the departure airport.
+     */
+    FLYING_BACK("FLBK");
     
-    /**
-    *   It can not be instantiated.
-    */
-    private PilotState () { }
+    
+    private final String state;
+    
+    private PilotState (String state) {
+        this.state = state;
+    }
 }

@@ -1,5 +1,6 @@
 package DepartureAirport.Communication;
 
+import DepartureAirport.EntitiesState.*;
 import java.io.Serializable;
 
 /**
@@ -35,6 +36,21 @@ public class Message implements Serializable {
     private boolean hostessAttendendedAllPassengers;
     
     /**
+     * State of the hostess.
+     */
+    private HostessState hostessState;
+    
+    /**
+     * State of the pilot.
+     */
+    private PilotState pilotState;
+    
+    /**
+     * State of the passenger.
+     */
+    private PassengerState passengerState;
+    
+    /**
      * Constructor of Message.
      * @param id
      * @param type 
@@ -43,7 +59,50 @@ public class Message implements Serializable {
         this.idPassenger = id;
         this.type = type;
     }
+    
+    /**
+     * Constructor with the type of the message and the state of the hostess.
+     * @param type type of the message
+     * @param value hostess state
+     */
+    public Message(MessageType type, HostessState value){
+        this.type = type;
+        switch (type){
+            case UPDATE_HOSTESS_STATE:
+                this.hostessState = value;
+                break;
+        }
+    }
 
+    /**
+     * Constructor with the type of the message and the state of the pilot.
+     * @param type type of the message
+     * @param value pilot state
+     */
+    public Message(MessageType type, PilotState value){
+        this.type = type;
+        switch (type){
+            case UPDATE_PILOT_STATE:
+                this.pilotState = value;
+                break;
+        }
+    }
+    
+    /**
+     * Constructor with the type of the message and the state of the pilot.
+     * @param type type of the message
+     * @param value pilot state
+     */
+    public Message(MessageType type, int id, PassengerState value){
+        this.type = type;
+        switch (type){
+            case UPDATE_PASSENGER_STATE:
+                this.idPassenger = id;
+                this.passengerState = value;
+                break;
+        }
+    }
+    
     /**
      * Constructor of Message.
      * @param type 

@@ -5,7 +5,13 @@ package Plane.Communication;
  */
 public enum MessageType {
     
+   
     /* ****************************** PASSENGER ***************************** */
+    
+    /**
+     * Update the state of the passenger.
+     */
+    UPDATE_PASSENGER_STATE, 
     
     /**
      * The passenger goes to the airport.
@@ -45,6 +51,11 @@ public enum MessageType {
     /* ******************************** PILOT ******************************* */
     
     /**
+     * Update the state of the pilot.
+     */
+    UPDATE_PILOT_STATE, 
+    
+    /**
      * The pilot informs the plane that he is ready to board.
      */
     INFORM_PLANE_READY_FOR_BOARDING,
@@ -82,6 +93,11 @@ public enum MessageType {
     /* ******************************* HOSTESS ****************************** */
     
     /**
+     * Update the state of the hostess.
+     */
+    UPDATE_HOSTESS_STATE, 
+    
+    /**
      * The hostess waits for the next flight to be ready for boarding.
      */
     WAIT_FOR_NEXT_FLIGHT,
@@ -115,4 +131,9 @@ public enum MessageType {
      * The hostess informs that no more flights are needed.
      */
     INFORM_NO_MORE_FLIGHTS_NEEDED,
+    
+    /**
+     * Notify logger to report the results.
+     */
+    REPORT_RESULTS,
 }

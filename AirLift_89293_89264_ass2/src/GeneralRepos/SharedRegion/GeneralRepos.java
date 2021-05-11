@@ -3,12 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package DepartureAirport.SharedRegion;
+package GeneralRepos.SharedRegion;
 
 /**
  *
  * @author User
  */
-public class IDepartureAirport {
+public class GeneralRepos {
     
 }

@@ -6,18 +6,23 @@ package Pilot.Main;
 public class SimulationParameters {
     
     /**
-    *    Total number of passengers.
-    */
+     * Total number of passengers.
+     */
     public static final int TTL_PASSENGER = 21;
+    
+    /**
+     * Number of passengers.
+     */
+    public static final int N_PASSENGER = 1;
    
     /**
-    *   Maximum number of passengers per flight.
-    */
+     * Maximum number of passengers per flight.
+     */
     public static final int MAX_PASSENGER = 10;
     
     /**
-    *   Minimum number of passengers per flight.
-    */
+     * Minimum number of passengers per flight.
+     */
     public static final int MIN_PASSENGER = 5;
     
     /**

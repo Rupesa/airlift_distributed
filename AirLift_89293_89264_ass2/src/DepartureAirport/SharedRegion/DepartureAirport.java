@@ -1,14 +1,19 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package DepartureAirport.SharedRegion;
 
+import DepartureAirport.Stubs.GeneralRepos;
+
 /**
- *
- * @author User
+ * DepartureAirport.
  */
 public class DepartureAirport {
+    
+    /**
+     * General Repository class for debugging.
+     */
+    private final GeneralRepos repos;
+    
+    public DepartureAirport(GeneralRepos logger){
+        this.repos = logger;
+    }
     
 }

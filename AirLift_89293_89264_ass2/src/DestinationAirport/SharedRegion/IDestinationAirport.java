@@ -1,14 +1,24 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package DestinationAirport.SharedRegion;
 
+import DestinationAirport.Communication.Message;
+import DestinationAirport.Communication.ServerComm;
+
 /**
- *
- * @author User
+ * This interface represents a shared region interface of Destination Airport.
  */
-public class IDestinationAirport {
+public interface IDestinationAirport {
     
+    /**
+     * Process and reply a message
+     * @param inMessage message to be processed
+     * @param scon communication channel
+     * @return message to be replied
+     */
+    public Message processAndReply(Message inMessage, ServerComm scon);
+    
+    /**
+     * Running 
+     * @return check if it is running
+     */
+    public boolean isRunning();
 }
