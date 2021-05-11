@@ -1,4 +1,4 @@
-package Pilot.EntitiesState;
+package Plane.EntitiesState;
 
 /** 
  *    Definition of the internal states of the pilot during his life cycle.
