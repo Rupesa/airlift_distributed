@@ -8,6 +8,7 @@ public enum MessageType {
    
     /* ****************************** PASSENGER ***************************** */
     
+    STATUS_OK,
     /**
      * Update the state of the passenger.
      */

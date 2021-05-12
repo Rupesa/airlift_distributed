@@ -14,7 +14,7 @@ public class DepartureAirportProxy implements ISharedRegion {
      */
     private final DepartureAirport departureAirport;
     
-//    private boolean isRunning;
+    private boolean isRunning;
     
     /**
      * DepartureAiport Proxy constructor.
@@ -22,7 +22,7 @@ public class DepartureAirportProxy implements ISharedRegion {
      */
     public DepartureAirportProxy(DepartureAirport dp){
         this.departureAirport = dp;
-//        this.isRunning = true;
+        this.isRunning = true;
     }
     
     /**
@@ -36,28 +36,28 @@ public class DepartureAirportProxy implements ISharedRegion {
         Message outMessage = new Message(false);
         ServiceProvider sp = (ServiceProvider) Thread.currentThread();
         
-        switch(inMessage.getMethodType()){
+        switch(inMessage.getMessageType()){
             
             case WAIT_FOR_NEXT_FLIGHT:
-//                departureAirport.waitingForNextFlight();
+                departureAirport.waitForNextFlight();
                 outMessage.setOperationDone(true);
                 break;
 
             case WAIT_FOR_NEXT_PASSENGER:
-//                departureAirport.waitingForPassenger();
+                departureAirport.waitForNextPassenger();
                 outMessage.setOperationDone(true);
                 break;
 
             case ASK_FOR_DOCUMENTS:
-//                departureAirport.askForDocuments();
+                departureAirport.checkDocuments();
                 outMessage.setOperationDone(true);
                 break;
 
-            case CHECK_DOCUMENTS:
-//                sp.setPassengerID(inMessage.getIdPassenger());
-//                departureAirport.waitingToBeCheckedIn();
-                outMessage.setOperationDone(true);
-                break;
+//            case CHECK_DOCUMENTS:
+////                sp.setPassengerID(inMessage.getIdPassenger());
+////                departureAirport.waitingToBeCheckedIn();
+//                outMessage = new Message(MessageType.STATUS_HOSTESS_OK);
+//                break;
                 
             case INFORM_PLANE_READY_TO_TAKE_OFF:
 //                sp.setAllPassengersAttended(inMessage.gethostessAttendendedAllPassengers());
@@ -67,36 +67,37 @@ public class DepartureAirportProxy implements ISharedRegion {
 
             case TRAVEL_TO_AIPORT:
 //                sp.setPassengerID(inMessage.getIdPassenger());
-//                departureAirport.travelToAirport();
+                departureAirport.travelToAirport(inMessage.getIdPassenger());
                 outMessage.setOperationDone(true);
                 break;
 
             case WAIT_IN_QUEUE:
 //                sp.setPassengerID(inMessage.getIdPassenger());
-//                departureAirport.waitInQueue();
+                departureAirport.waitInQueue(inMessage.getIdPassenger());
                 outMessage.setOperationDone(true);
                 break;
 
             case SHOW_DOCUMENTS:
 //                sp.setPassengerID(inMessage.getIdPassenger());
-//                departureAirport.showDocuments();
+                departureAirport.showDocuments();
                 outMessage.setOperationDone(true);
                 break;
 
             case INFORM_PLANE_READY_FOR_BOARDING:
-//                departureAirport.informReadyBoarding();
+                departureAirport.informPlaneReadyForBoarding();
                 outMessage.setOperationDone(true);
                 break;
 
             case WAIT_FOR_ALL_IN_BOARD:
-//                departureAirport.waitingForBoarding();
+                departureAirport.waitForAllInBoard();
                 outMessage.setOperationDone(true);
                 break;
 
             case INFORM_PILOT_TO_END_ACTIVITY:
-//                boolean value = departureAirport.isInformPilotToCeaseActivity();
+                boolean value = departureAirport.informPilotToEndActivity();
 //                outMessage.setResponseBoolValue(value);
                 outMessage.setOperationDone(true);
+           
 //                synchronized (this){
 //                    if(value){
 //                        isRunning = false;

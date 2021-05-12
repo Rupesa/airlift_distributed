@@ -183,4 +183,46 @@ public class Message implements Serializable {
     public boolean gethostessAttendendedAllPassengers(){
         return hostessAttendendedAllPassengers;
     }
+
+    /**
+     * @return the hostessState
+     */
+    public HostessState getHostessState() {
+        return hostessState;
+    }
+
+    /**
+     * @param hostessState the hostessState to set
+     */
+    public void setHostessState(HostessState hostessState) {
+        this.hostessState = hostessState;
+    }
+
+    /**
+     * @return the pilotState
+     */
+    public PilotState getPilotState() {
+        return pilotState;
+    }
+
+    /**
+     * @param pilotState the pilotState to set
+     */
+    public void setPilotState(PilotState pilotState) {
+        this.pilotState = pilotState;
+    }
+
+    /**
+     * @return the passengerState
+     */
+    public PassengerState getPassengerState() {
+        return passengerState;
+    }
+
+    /**
+     * @param passengerState the passengerState to set
+     */
+    public void setPassengerState(PassengerState passengerState) {
+        this.passengerState = passengerState;
+    }
 }

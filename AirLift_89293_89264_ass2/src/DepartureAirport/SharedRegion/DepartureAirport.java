@@ -1,5 +1,6 @@
 package DepartureAirport.SharedRegion;
 
+import DepartureAirport.EntitiesState.*;
 import DepartureAirport.Stubs.*;
 import commInfra.MemException;
 import commInfra.MemFIFO;
@@ -11,12 +12,12 @@ import java.util.logging.Logger;
  * Where passengers arrive and start flying.
  */
 public class DepartureAirport {
-  
+
     /**
      * GeneralRepos class for debugging.
      */
     private final GeneralRepos repos;
-       
+
     /* initial configurations */
     private MemFIFO<Integer> passengers;
     private int MAX_PASSENGER;
@@ -31,7 +32,7 @@ public class DepartureAirport {
     private boolean hostessInformPlaneReadyToTakeOff;
     private static boolean hostessInformPilotToEndActivity;
     private boolean pilotInformPlaneReadyForBoarding;
-    
+
     /**
      * Departure Airport instantiation.
      *
@@ -60,27 +61,25 @@ public class DepartureAirport {
         pilotInformPlaneReadyForBoarding = false;
         this.repos = repos;
     }
-    
+
     /**
      * DepartureAiport class constructor.
+     *
      * @param repos
      */
-    public DepartureAirport(GeneralRepos repos){
+    public DepartureAirport(GeneralRepos repos) {
         this.repos = repos;
     }
-    
+
     /* ******************************* HOSTESS ****************************** */
-    
     /**
-     * The hostess waits for the next flight to be ready for boarding.
-     * It is called by a hostess.
+     * The hostess waits for the next flight to be ready for boarding. It is
+     * called by a hostess.
      */
     public synchronized void waitForNextFlight() {
         /* change state of hostess to WTFL */
-//        AEHostess hostess = (AEHostess) Thread.currentThread();
-//        if (hostess.getHostessState() == AEHostessStates.RDTF) {
-//            hostess.setHostessState(AEHostessStates.WTFL);
-//            repos.setHostessState(currentPassenger, hostess.getHostessState());
+//        if (HostessState.getState() == HostessState.READY_TO_FLY.toString()) {
+//            repos.updateHostessState(HostessState.WAIT_FOR_FLIGHT, currentPassenger);
 //        }
 
         /* wait for the pilot to notify that he is ready to board */
@@ -93,11 +92,11 @@ public class DepartureAirport {
             }
         }
     }
-    
+
     /**
      * The hostess waits for the next passenger in the queue. When there is a
-     * passenger, the hostess removes him from the queue and starts the check in.
-     * It is called by a hostess.
+     * passenger, the hostess removes him from the queue and starts the check
+     * in. It is called by a hostess.
      */
     public synchronized void waitForNextPassenger() {
         /* waiting for passengers */
@@ -106,9 +105,7 @@ public class DepartureAirport {
             GenericIO.writelnString("(02) Hostess is waiting for passengers");
 
             /* change state of hostess to WTPS */
-//            AEHostess hostess = (AEHostess) Thread.currentThread();
-//            hostess.setHostessState(AEHostessStates.WTPS);
-//            repos.setHostessState(currentPassenger, hostess.getHostessState());
+            repos.updateHostessState(HostessState.WAIT_FOR_PASSENGER, currentPassenger);
 
             try {
                 wait();
@@ -124,18 +121,15 @@ public class DepartureAirport {
         notifyAll();
         GenericIO.writelnString("(03) Hostess accepted a passenger for check in");
     }
-    
+
     /**
      * The hostess asks the passenger for the documents and waits for him to
      * deliver them. When the passenger shows the documents, the hostess accepts
-     *  and adds them to the flight.
-     * It is called by a hostess.
+     * and adds them to the flight. It is called by a hostess.
      */
     public synchronized void checkDocuments() {
         /* change state of hostess to CKPS */
-//        AEHostess hostess = (AEHostess) Thread.currentThread();
-//        hostess.setHostessState(AEHostessStates.CKPS);
-//        repos.setHostessState(currentPassenger, hostess.getHostessState());
+        repos.updateHostessState(HostessState.CHECK_PASSENGER, currentPassenger);
 
         /* ask for documents from the passenger */
         GenericIO.writelnString("(04) Hostess asked passenger for documents");
@@ -151,29 +145,26 @@ public class DepartureAirport {
                 e.printStackTrace();
             }
         }
-        
+
         passengerShowingDocuments = false;
         GenericIO.writelnString("(06) Hostess received and accepted documents");
         numberOfPassengerOnThePlane++;
-        
+
         /* change state of hostess to WTPS */
-//        hostess.setHostessState(AEHostessStates.WTPS);
-//        repos.setHostessState(currentPassenger, hostess.getHostessState());
+        repos.updateHostessState(HostessState.WAIT_FOR_PASSENGER, currentPassenger);
     }
-    
+
     /**
      * The hostess informs the pilot that the plane is ready to take off. When:
      * There are no more passengers in the queue and the plane already has the
      * minimum number of passengers for boarding; The number of passengers on
      * the plane has already reached its maximum; There are no more passengers
      * in the queue (because they are the last) and they are all already checked
-     * in.
-     * It is called by a hostess.
+     * in. It is called by a hostess.
      */
     public synchronized void informPlaneReadyToTakeOff() {
         /* check if the flight has the conditions to take off */
         if ((passengers.empty() && numberOfPassengerOnThePlane > MIN_PASSENGER) || numberOfPassengerOnThePlane == MAX_PASSENGER || (passengers.empty() && (numberOfAttendedPassengers == TTL_PASSENGER))) {
-//        if ((passengers.empty() && numberOfPassengerOnThePlane > MIN_PASSENGER) || numberOfPassengerOnThePlane == MAX_PASSENGER || (passengers.empty() && hostess.checkIfAllPassengersAreAttended())) {
             hostessInformPlaneReadyToTakeOff = true;
             if (numberOfAttendedPassengers == TTL_PASSENGER) {
                 hostessInformPilotToEndActivity = true;
@@ -183,8 +174,7 @@ public class DepartureAirport {
             GenericIO.writelnString("(08) Hostess informs plane is ready to fly");
 
             /* change state of hostess to RDTF */
-//            hostess.setHostessState(AEHostessStates.RDTF);
-//            repos.setHostessState(currentPassenger, hostess.getHostessState());
+            repos.updateHostessState(HostessState.READY_TO_FLY, currentPassenger);
 
             /* wait for the pilot to report that he is ready to board */
             while (pilotInformPlaneReadyForBoarding) {
@@ -198,42 +188,33 @@ public class DepartureAirport {
             hostessInformPlaneReadyToTakeOff = false;
         }
     }
-    
+
     /* ****************************** PASSENGER ***************************** */
-    
     /**
-     * The passenger goes to the airport.
-     * It is called by a passenger.
+     * The passenger goes to the airport. It is called by a passenger.
      */
     public synchronized void travelToAirport(int id) {
         /* going to airport */
-//        AEPassenger pass = (AEPassenger) Thread.currentThread();
         try {
             passengers.write(id);
-//            passengers.write(pass.getPassengerId());
         } catch (MemException ex) {
             Logger.getLogger(DepartureAirport.class.getName()).log(Level.SEVERE, null, ex);
         }
         notifyAll();
         GenericIO.writelnString("(09) Passenger " + id + " go to airport");
-//        GenericIO.writelnString("(09) Passenger " + pass.getPassengerId() + " go to airport");
     }
-    
+
     /**
-     * The passenger waits in line for the check in.
-     * It is called by a passenger.
+     * The passenger waits in line for the check in. It is called by a
+     * passenger.
      */
     public synchronized void waitInQueue(int id) {
         /* change state of passenger to INQE */
-//        AEPassenger pass = (AEPassenger) Thread.currentThread();
-//        pass.setPassengerState(AEPassengerStates.INQE);
-//        repos.setPassengerState(pass.getPassengerId(), pass.getPassengerState());
+        repos.updatePassengerState(PassengerState.IN_QUEUE, id);
 
         /* wait in line until the hostess starts checking in */
         GenericIO.writelnString("(10) Passenger " + id + " is waiting in queue");
-//        GenericIO.writelnString("(10) Passenger " + pass.getPassengerId() + " is waiting in queue");
         while (passengers.contains(id)) {
-//        while (passengers.contains(pass.getPassengerId())) {
             try {
                 wait();
             } catch (InterruptedException e) {
@@ -241,11 +222,10 @@ public class DepartureAirport {
             }
         }
     }
-    
+
     /**
      * The passenger is asked to show his documents and he shows them to the
-     * hostess.
-     * It is called by a passenger.
+     * hostess. It is called by a passenger.
      */
     public synchronized void showDocuments() {
         /* wait for the hostess to ask you for the documents */
@@ -261,7 +241,7 @@ public class DepartureAirport {
         GenericIO.writelnString("(12) Passenger showed documents");
         notifyAll();
     }
-    
+
     /* ******************************** PILOT ******************************* */
     /**
      * The pilot informs the plane that he is ready to board.
@@ -273,9 +253,7 @@ public class DepartureAirport {
         numberOfFilght++;
 
         /* change state of pilot to RDFB */
-//        AEPilot pilot = (AEPilot) Thread.currentThread();
-//        pilot.setPilotState(AEPilotStates.RDFB);
-//        repos.setPilotState(pilot.getPilotState());
+        repos.updatePilotState(PilotState.READY_FOR_BOARDING);
 
         /* wait for the hostess to notify you that the plane is ready to take off */
         GenericIO.writelnString("(13) Pilot informed plane is ready to be boarded");
@@ -285,14 +263,11 @@ public class DepartureAirport {
 
     /**
      * The pilot waits for the passengers to be on the plane and then is ready
-     * to fly.
-     * It is called by a pilot.
+     * to fly. It is called by a pilot.
      */
     public synchronized void waitForAllInBoard() {
         /* change state of pilot to WTFB */
-//        AEPilot pilot = (AEPilot) Thread.currentThread();
-//        pilot.setPilotState(AEPilotStates.WTFB);
-//        repos.setPilotState(pilot.getPilotState());
+        repos.updatePilotState(PilotState.WAITING_FOR_BOARDING);
 
         /* wait for the hostess to notify you that the plane is ready to take off */
         GenericIO.writelnString("(14) Pilot is waiting for the boarding to be finished");
@@ -308,20 +283,21 @@ public class DepartureAirport {
         GenericIO.writelnString("(15) Boarding is finished and pilot is going to fly");
 
         /* set information of flight */
-//        repos.setInfoBoardPlane(numberOfFilght, numberOfPassengerOnThePlane);
+        repos.updateInfoBoard(numberOfFilght, numberOfPassengerOnThePlane);
         GenericIO.writelnString("FLIGHT " + numberOfFilght + " with " + numberOfPassengerOnThePlane + " passengers");
-        
-        /* travel time (added so that you can see other passengers arriving at the airport during the flight) */ 
+
+        /* travel time (added so that you can see other passengers arriving at the airport during the flight) */
         try {
             Thread.sleep(1500);
         } catch (InterruptedException ex) {
             Logger.getLogger(DepartureAirport.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
+
     /**
-     * The pilot stops his activity when the hostess tells him to.
-     * It is called by a pilot.
+     * The pilot stops his activity when the hostess tells him to. It is called
+     * by a pilot.
+     *
      * @return the value of the hostessInformPilotToEndActivity variable
      */
     public synchronized boolean informPilotToEndActivity() {

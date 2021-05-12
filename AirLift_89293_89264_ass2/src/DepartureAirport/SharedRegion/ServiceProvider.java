@@ -3,8 +3,8 @@ package DepartureAirport.SharedRegion;
 import DepartureAirport.Communication.*;
 
 /**
- * Service Provider implementation.
- * Processes and replies messages accordingly to the internal implementation
+ * Service Provider implementation. Processes and replies messages accordingly
+ * to the internal implementation
  */
 public class ServiceProvider extends Thread {
 
@@ -12,27 +12,28 @@ public class ServiceProvider extends Thread {
      * Communication channel with the server.
      */
     private final ServerComm com;
-    
+
     /**
      * Shared region implementation.
      */
     private final ISharedRegion rtInt;
-    
+
     /**
      * Service Provider constructor.
+     *
      * @param com communication channel with the server.
      * @param rtInt shared region.
      */
-    public ServiceProvider(ServerComm com, ISharedRegion rtInt){
+    public ServiceProvider(ServerComm com, ISharedRegion rtInt) {
         this.com = com;
         this.rtInt = rtInt;
     }
-    
+
     /**
      * Lifecycle of the service provider.
      */
     @Override
-    public void run(){
+    public void run() {
         /* Read object from the communication channel. */
         Message inMessage = (Message) com.readObject();
         /* Process and reply request. */
