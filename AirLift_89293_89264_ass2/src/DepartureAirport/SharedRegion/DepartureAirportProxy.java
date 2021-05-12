@@ -14,7 +14,7 @@ public class DepartureAirportProxy implements ISharedRegion {
      */
     private final DepartureAirport departureAirport;
     
-    private boolean isRunning;
+//    private boolean isRunning;
     
     /**
      * DepartureAiport Proxy constructor.
@@ -22,7 +22,7 @@ public class DepartureAirportProxy implements ISharedRegion {
      */
     public DepartureAirportProxy(DepartureAirport dp){
         this.departureAirport = dp;
-        this.isRunning = true;
+//        this.isRunning = true;
     }
     
     /**
@@ -108,8 +108,8 @@ public class DepartureAirportProxy implements ISharedRegion {
         return outMessage;
     }
     
-    @Override
-    public synchronized boolean isRunning(){
-        return isRunning;
-    }
+//    @Override
+//    public synchronized boolean isRunning(){
+//        return isRunning;
+//    }
 }

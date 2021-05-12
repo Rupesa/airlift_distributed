@@ -4,8 +4,7 @@ package DepartureAirport.Communication;
  * Defines the message types used on the messaging system.
  */
 public enum MessageType {
-    
-   
+      
     /* ****************************** PASSENGER ***************************** */
     
     /**

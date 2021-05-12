@@ -1,6 +1,6 @@
-package DepartureAirport.SharedRegion;
+package Plane.SharedRegion;
 
-import DepartureAirport.Communication.*;
+import Plane.Communication.*;
 
 /**
  * This interface represents a shared region interface.
@@ -15,8 +15,8 @@ public interface ISharedRegion {
      */
     public Message processAndReply(Message inMessage, ServerComm scon);
     
-//    /**
-//     * Check if it is running.
-//     */
-//    public boolean isRunning();
+    /**
+     * Check if it is running.
+     */
+    public boolean isRunning(); 
 }

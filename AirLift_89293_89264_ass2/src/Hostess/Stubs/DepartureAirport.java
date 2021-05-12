@@ -1,11 +1,18 @@
 package Hostess.Stubs;
 
+import DepartureAirport.EntitiesState.*;
+import DepartureAirport.Stubs.*;
+import Hostess.Main.*;
+import commInfra.*;
+import genclass.GenericIO;
+import java.util.logging.*;
+
 /**
- * Departure Airport stub. Class used to communicate with the departure airport
- * using TCP communication channels.
+ * Departure Airport stub. 
+ * Class used to communicate with the departure airport using TCP communication channels.
  */
 public class DepartureAirport {
-       
+  
     /**
      * Name of the computational system where it is located the server.
      */
@@ -27,5 +34,4 @@ public class DepartureAirport {
         serverHostName = hostName;
         serverPortNumb = port;
     }
-    
 }

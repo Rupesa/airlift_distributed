@@ -1,12 +1,11 @@
 package DestinationAirport.SharedRegion;
 
-import DestinationAirport.Communication.Message;
-import DestinationAirport.Communication.ServerComm;
+import DestinationAirport.Communication.*;
 
 /**
  * This interface represents a shared region interface of Destination Airport.
  */
-public interface IDestinationAirport {
+public interface ISharedRegion {
     
     /**
      * Process and reply a message

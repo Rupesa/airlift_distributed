@@ -15,12 +15,13 @@ public class MainProgram {
          */
         DepartureAirport dp = new DepartureAirport(SimulationParameters.DEPARTURE_AIRPORT_HOST_NAME, SimulationParameters.DEPARTURE_AIRPORT_PORT);
         Plane pl = new Plane(SimulationParameters.PLANE_HOST_NAME, SimulationParameters.PLANE_PORT);
-        GeneralRepos lg = new GeneralRepos(SimulationParameters.REPOS_HOST_NAME, SimulationParameters.REPOS_PORT);
+//        GeneralRepos lg = new GeneralRepos(SimulationParameters.REPOS_HOST_NAME, SimulationParameters.REPOS_PORT);
 
         /**
          * Pilot lifecycle start.
          */
-        Pilot ps = new Pilot(dp, pl, lg);
+        Pilot ps = new Pilot(dp, pl);
+//        Pilot ps = new Pilot(dp, pl, lg);
         ps.start();
         try {
             ps.join();

@@ -1,15 +1,14 @@
 package DestinationAirport.SharedRegion;
 
-import DestinationAirport.Communication.Message;
-import DestinationAirport.Communication.ServerComm;
-import DestinationAirport.Main.SimulationParameters;
+import DestinationAirport.Communication.*;
+import DestinationAirport.Main.*;
 
 /**
- * Paddock proxy for the logger shared region.
+ * DestinationAirport proxy for the logger shared region.
  * Implements the ISharedRegion interface, and listens to the requests,
  * processes them and replies.
  */
-public class DestinationAirportProxy implements IDestinationAirport {
+public class DestinationAirportProxy implements ISharedRegion {
     
     /**
      * DestinationAirport used to process the messages.
@@ -28,16 +27,7 @@ public class DestinationAirportProxy implements IDestinationAirport {
         this.count = 0;
         isRunning = true;
     }
-    
-    /**
-     * Running 
-     * @return check if it is running
-     */
-    @Override
-    public synchronized boolean isRunning(){
-        return isRunning;
-    }
-    
+        
     /**
      * Process and reply a message
      * @param inMessage message to be processed
@@ -65,5 +55,14 @@ public class DestinationAirportProxy implements IDestinationAirport {
             }
         }
         return outMessage;
+    }
+    
+    /**
+     * Running 
+     * @return check if it is running
+     */
+    @Override
+    public synchronized boolean isRunning(){
+        return isRunning;
     }
 }

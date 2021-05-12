@@ -37,7 +37,7 @@ public class Passenger extends Thread {
     /**
      * Instance of the generalRepos.
      */
-    private final GeneralRepos lg;
+//    private final GeneralRepos lg;
     
     /**
      * Passenger constructor
@@ -47,13 +47,20 @@ public class Passenger extends Thread {
      * @param dt instance of the destinationAirport
      * @param lg instance of the generalRepos
      */
-    public Passenger(int idPassenger, DepartureAirport dp, Plane pl, DestinationAirport dt, GeneralRepos lg){
+    public Passenger(int idPassenger, DepartureAirport dp, Plane pl, DestinationAirport dt){
         this.state = PassengerState.GOING_TO_AIRPORT;
         this.dp = dp;
         this.dt = dt;
         this.pl = pl;
-        this.lg = lg;
+//        this.lg = lg;
     }
+//    public Passenger(int idPassenger, DepartureAirport dp, Plane pl, DestinationAirport dt, GeneralRepos lg){
+//        this.state = PassengerState.GOING_TO_AIRPORT;
+//        this.dp = dp;
+//        this.dt = dt;
+//        this.pl = pl;
+//        this.lg = lg;
+//    }
     
     @Override
     public void run() {

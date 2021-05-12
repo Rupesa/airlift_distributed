@@ -1,14 +1,35 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package DestinationAirport.SharedRegion;
 
+import DestinationAirport.Stubs.*;
+import genclass.GenericIO;
+
 /**
- *
- * @author User
+ * Where passengers leave the airport.
  */
 public class DestinationAirport {
-    
+
+    /**
+     * GeneralRepos class for debugging.
+     */
+    private final GeneralRepos repos;
+
+    // configurations
+    private int numberOfPassengersLeavingThePlane;
+
+    /**
+     * DestinationAirport class constructor.
+     * @param repos
+     */
+    public DestinationAirport(GeneralRepos repos) {
+        this.repos = repos;
+    }
+
+    /* ****************************** PASSENGER ***************************** */
+    /**
+     * The passenger leaves airport. It is called by a passenger.
+     */
+    public synchronized void leaveAirport() {
+        GenericIO.writelnString("(26) Passenger leave airport");
+        numberOfPassengersLeavingThePlane++;
+    }
 }

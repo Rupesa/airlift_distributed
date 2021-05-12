@@ -7,7 +7,7 @@ import Pilot.Stubs.*;
  * Pilot thread.
  * It simulates the pilot life cycle.
  */
-public class Pilot {
+public class Pilot extends Thread {
     
     /**
      * Current pilot state.
@@ -27,7 +27,7 @@ public class Pilot {
     /**
      * Instance of the generalRepos.
      */
-    private final GeneralRepos lg;
+//    private final GeneralRepos lg;
     
     /**
      * Pilot constructor
@@ -35,12 +35,18 @@ public class Pilot {
      * @param pl instance of the plane
      * @param lg instance of the generalRepos
      */
-    public Pilot(DepartureAirport dp, Plane pl, GeneralRepos lg){
+    public Pilot(DepartureAirport dp, Plane pl){
         this.state = PilotState.AT_TRANSFER_GATE;
         this.dp = dp;
         this.pl = pl;
-        this.lg = lg;
+//        this.lg = lg;
     }
+//    public Pilot(DepartureAirport dp, Plane pl, GeneralRepos lg){
+//        this.state = PilotState.AT_TRANSFER_GATE;
+//        this.dp = dp;
+//        this.pl = pl;
+//        this.lg = lg;
+//    }
     
     @Override
     public void run() {

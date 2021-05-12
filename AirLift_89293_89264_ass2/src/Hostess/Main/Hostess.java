@@ -2,6 +2,7 @@ package Hostess.Main;
 
 import Hostess.EntitiesState.*;
 import Hostess.Stubs.*;
+import genclass.GenericIO;
 
 /**
  * Hostess thread.
@@ -12,14 +13,17 @@ public class Hostess extends Thread {
     /**
      * Current hostess state.
      */
-    private HostessState state;
-    
-    private int attendedPassengers;
+    private HostessState hostessState;
     
     /**
-     * Total number of passengers.
-     */
-    private int totalPassengers;
+    *   Maximum number of passengers.
+    */
+    private int maxNumberOfPassengers;
+    
+    /**
+    *   Nnumber of attended passengers.
+    */
+    private int numberOfAttendedPassengers;
     
     /**
      * Instance of the departureAirport.
@@ -29,35 +33,39 @@ public class Hostess extends Thread {
     /**
      * Instance of the generalRepos.
      */
-    private final GeneralRepos lg;
+//    private final GeneralRepos lg;
     
     /**
      * Hostess constructor
-     * @param nPassengers number of passengers
+     * @param nPassengers maximum number of passengers
      * @param dp instance of the departureAirport
      * @param lg instance of the generalRepos
      */
-    public Hostess(int nPassengers, DepartureAirport dp, GeneralRepos lg){
-        this.state = HostessState.WAIT_FOR_FLIGHT;
+    public Hostess(int nPassengers, DepartureAirport dp){
+        this.hostessState = HostessState.WAIT_FOR_FLIGHT;
         this.dp = dp;
-        this.lg = lg;
-        this.totalPassengers = nPassengers;
-        this.attendedPassengers = 0;
+//        this.lg = lg;
+        this.maxNumberOfPassengers = nPassengers;
+        this.numberOfAttendedPassengers = 0;
     }
+    
+//    public Hostess(int nPassengers, DepartureAirport dp, GeneralRepos lg){
+//        this.hostessState = HostessState.WAIT_FOR_FLIGHT;
+//        this.dp = dp;
+//        this.lg = lg;
+//        this.maxNumberOfPassengers = nPassengers;
+//        this.numberOfAttendedPassengers = 0;
+//    }
     
     @Override
     public void run() {
-        while(totalPassengers != attendedPassengers){
-            boolean flight_full = false;
-            
-//            dp.waitingForNextFlight();
-            while(!flight_full) {
-//                dp.waitingForPassenger();
-//                dp.askForDocuments();
-//                dp.waitingToCheckPassenger();
-                attendedPassengers++;
-//                flight_full = dp.informReadyToFly();
-            }
+        GenericIO.writelnString("Started Hostess activity");
+        while(maxNumberOfPassengers != numberOfAttendedPassengers){
+//            dp.waitForNextFlight();
+//            dp.waitForNextPassenger();
+//            dp.checkDocuments();
+//            numberOfAttendedPassengers++;
+//            dp.informPlaneReadyToTakeOff();
         }
     }
     
@@ -66,7 +74,7 @@ public class Hostess extends Thread {
      * @return the state
      */
     public HostessState getHostessState() {
-        return state;
+        return hostessState;
     }
 
     /**
@@ -74,6 +82,6 @@ public class Hostess extends Thread {
      * @param state the state to set
      */
     public void setHostessState(HostessState state) {
-        this.state = state;
+        this.hostessState = state;
     }
 }

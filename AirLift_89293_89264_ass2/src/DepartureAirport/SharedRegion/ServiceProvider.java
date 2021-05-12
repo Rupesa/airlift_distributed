@@ -1,7 +1,6 @@
 package DepartureAirport.SharedRegion;
 
-import DepartureAirport.Communication.Message;
-import DepartureAirport.Communication.ServerComm;
+import DepartureAirport.Communication.*;
 
 /**
  * Service Provider implementation.
@@ -18,9 +17,6 @@ public class ServiceProvider extends Thread {
      * Shared region implementation.
      */
     private final ISharedRegion rtInt;
-    
-    private int idPassenger;
-    private boolean allPassengersAreAttended;
     
     /**
      * Service Provider constructor.
@@ -44,40 +40,5 @@ public class ServiceProvider extends Thread {
         /* Send reply and close communication channel. */
         com.writeObject(outMessage);
         com.close();
-    }
-    
-    public boolean allPassengersAttended(){
-        if(allPassengersAreAttended)
-            return true;
-        else
-            return false;
-    }
-    
-    /**
-     * @return the idPassenger
-     */
-    public int getIdPassenger() {
-        return idPassenger;
-    }
-
-    /**
-     * @param idPassenger the idPassenger to set
-     */
-    public void setIdPassenger(int idPassenger) {
-        this.idPassenger = idPassenger;
-    }
-
-    /**
-     * @return the allPassengersAreAttended
-     */
-    public boolean isAllPassengersAreAttended() {
-        return allPassengersAreAttended;
-    }
-
-    /**
-     * @param allPassengersAreAttended the allPassengersAreAttended to set
-     */
-    public void setAllPassengersAreAttended(boolean allPassengersAreAttended) {
-        this.allPassengersAreAttended = allPassengersAreAttended;
     }
 }

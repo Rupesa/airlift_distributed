@@ -48,7 +48,6 @@ public class MainProgram {
                 sp.start();
             } catch (SocketTimeoutException ex) {
             }
-            
         }
     }
 }
