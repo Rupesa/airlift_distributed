@@ -1,6 +1,7 @@
 package Hostess.Main;
 
 import Hostess.Stubs.*;
+import genclass.GenericIO;
 
 /**
  * Main hostess program.
@@ -13,19 +14,18 @@ public class MainProgram {
         /**
          * Stub initialization.
          */
-        DepartureAirport dp = new DepartureAirport(SimulationParameters.DEPARTURE_AIRPORT_HOST_NAME, SimulationParameters.DEPARTURE_AIRPORT_PORT);
-//        GeneralRepos lg = new GeneralRepos(SimulationParameters.REPOS_HOST_NAME, SimulationParameters.REPOS_PORT);
+        DepartureAirport departureAirport = new DepartureAirport(SimulationParameters.DEPARTURE_AIRPORT_HOST_NAME, SimulationParameters.DEPARTURE_AIRPORT_PORT);
 
         /**
          * Hostess lifecycle start.
          */
-        Hostess ht = new Hostess(SimulationParameters.N_PASSENGER, dp); 
-//        Hostess ht = new Hostess(SimulationParameters.N_PASSENGER, dp, lg); 
-        ht.start();
+        Hostess hostess = new Hostess("Hostess", departureAirport, SimulationParameters.N_PASSENGER); 
+        hostess.start();
         try {
-            ht.join();
+            hostess.join();
         } catch (InterruptedException ex) {
             ex.printStackTrace();
         }
+        GenericIO.writelnString ("The hostess has terminated.");
     }  
 }

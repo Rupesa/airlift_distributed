@@ -1,32 +1,31 @@
 package Pilot.Main;
 
 import Pilot.Stubs.*;
+import genclass.GenericIO;
 
 /**
- * Main pilot program.
- * Initialize stubs and start pilot lifecycle.
+ * Main pilot program. Initialize stubs and start pilot lifecycle.
  */
 public class MainProgram {
-    
+
     public static void main(String args[]) {
-        
+
         /**
          * Stub initialization.
          */
-        DepartureAirport dp = new DepartureAirport(SimulationParameters.DEPARTURE_AIRPORT_HOST_NAME, SimulationParameters.DEPARTURE_AIRPORT_PORT);
-        Plane pl = new Plane(SimulationParameters.PLANE_HOST_NAME, SimulationParameters.PLANE_PORT);
-//        GeneralRepos lg = new GeneralRepos(SimulationParameters.REPOS_HOST_NAME, SimulationParameters.REPOS_PORT);
+        DepartureAirport departureAirport = new DepartureAirport(SimulationParameters.DEPARTURE_AIRPORT_HOST_NAME, SimulationParameters.DEPARTURE_AIRPORT_PORT);
+        Plane plane = new Plane(SimulationParameters.PLANE_HOST_NAME, SimulationParameters.PLANE_PORT);
 
         /**
          * Pilot lifecycle start.
          */
-        Pilot ps = new Pilot(dp, pl);
-//        Pilot ps = new Pilot(dp, pl, lg);
-        ps.start();
+        Pilot passenger = new Pilot("Pilot", departureAirport, plane);
+        passenger.start();
         try {
-            ps.join();
+            passenger.join();
         } catch (InterruptedException ex) {
             ex.printStackTrace();
         }
-    }  
+        GenericIO.writelnString("The pilot has terminated.");
+    }
 }

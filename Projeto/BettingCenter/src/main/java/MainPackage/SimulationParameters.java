@@ -15,62 +15,62 @@ public class SimulationParameters {
     /**
      * Betting center server host name.
      */
-    public final static String BETTING_CENTER_HOST_NAME = "l040101-ws02.ua.pt";
+    public final static String BETTING_CENTER_HOST_NAME = "localhost";
     
     /**
      * Betting center server port.
      */
-    public final static int BETTING_CENTER_PORT = 22420;
+    public final static int BETTING_CENTER_PORT = 8081;
     
     /**
      * Control center server host name.
      */
-    public final static String CONTROL_CENTER_HOST_NAME = "l040101-ws03.ua.pt";
+    public final static String CONTROL_CENTER_HOST_NAME = "localhost";
     
     /**
      * Control center server port.
      */
-    public final static int CONTROL_CENTER_PORT = 22421;
+    public final static int CONTROL_CENTER_PORT = 8082;
 
     /**
      * Paddock server host name.
      */
-    public final static String PADDOCK_HOST_NAME = "l040101-ws04.ua.pt";
+    public final static String PADDOCK_HOST_NAME = "localhost";
     
     /**
      * Paddock server port.
      */
-    public final static int PADDOCK_PORT = 22422;
+    public final static int PADDOCK_PORT = 8083;
     
     /**
      * Racing Track server host name.
      */
-    public final static String RACING_TRACK_HOST_NAME = "l040101-ws05.ua.pt";
+    public final static String RACING_TRACK_HOST_NAME = "localhost";
     
     /**
      * Racing Track server port.
      */
-    public final static int RACING_TRACK_PORT = 22423;
+    public final static int RACING_TRACK_PORT = 8084;
     
     /**
      * Stable server host name.
      */
-    public final static String STABLE_HOST_NAME = "l040101-ws06.ua.pt";
+    public final static String STABLE_HOST_NAME = "localhost";
     
     /**
      * Stable server port.
      */
-    public final static int STABLE_PORT = 22424;
+    public final static int STABLE_PORT = 8085;
     
     /**
      * Logger server host name.
      */
-    public final static String LOGGER_HOST_NAME = "l040101-ws01.ua.pt";
+    public final static String LOGGER_HOST_NAME = "localhost";
     
     /**
      * Logger server port.
      */
-    public final static int LOGGER_PORT = 22425;
+    public final static int LOGGER_PORT = 8086;
     
     /**
      * Number of races.

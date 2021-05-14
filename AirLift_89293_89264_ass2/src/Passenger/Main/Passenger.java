@@ -2,85 +2,105 @@ package Passenger.Main;
 
 import Passenger.EntitiesState.*;
 import Passenger.Stubs.*;
+import genclass.GenericIO;
 
 /**
- * Passenger thread.
- * It simulates the passenger life cycle.
+ * Passenger thread. It simulates the passenger life cycle.
  */
 public class Passenger extends Thread {
-    
+
     /**
-     * Current passenger state.
+     * Instance of the departureAirport.
      */
-    private PassengerState state;
-    
+    private final DepartureAirport departureAirport;
+
+    /**
+     * Instance of the destinationAirport.
+     */
+    private final DestinationAirport destinationAirport;
+
+    /**
+     * Instance of the Passenger.
+     */
+    private final Plane plane;
+
     /**
      * Id of Passenger
      */
     private int idPassenger;
-        
+
     /**
-     * Instance of the departureAirport.
+     * Current passenger state.
      */
-    private final DepartureAirport dp;
-    
-    /**
-     * Instance of the destinationAirport.
-     */
-    private final DestinationAirport dt;
-    
-    /**
-     * Instance of the plane.
-     */
-    private final Plane pl;
-    
-    /**
-     * Instance of the generalRepos.
-     */
-//    private final GeneralRepos lg;
-    
+    private PassengerState state;
+
     /**
      * Passenger constructor
-     * @param idPassenger id of passenger
-     * @param dp instance of the departureAirport
-     * @param pl instance of the plane
-     * @param dt instance of the destinationAirport
-     * @param lg instance of the generalRepos
+     *
+     * @param name thread name
+     * @param id of passenger
+     * @param departureAirport instance of the departureAirport
+     * @param plane instance of the plane
+     * @param destinationAirport instance of the destinationAirport
      */
-    public Passenger(int idPassenger, DepartureAirport dp, Plane pl, DestinationAirport dt){
+    public Passenger(String name, DepartureAirport departureAirport, Plane plane, DestinationAirport destinationAirport, int id) {
+        super(name);
+        this.departureAirport = departureAirport;
+        this.destinationAirport = destinationAirport;
+        this.plane = plane;
+        this.idPassenger = id;
         this.state = PassengerState.GOING_TO_AIRPORT;
-        this.dp = dp;
-        this.dt = dt;
-        this.pl = pl;
-//        this.lg = lg;
     }
-//    public Passenger(int idPassenger, DepartureAirport dp, Plane pl, DestinationAirport dt, GeneralRepos lg){
-//        this.state = PassengerState.GOING_TO_AIRPORT;
-//        this.dp = dp;
-//        this.dt = dt;
-//        this.pl = pl;
-//        this.lg = lg;
-//    }
-    
+
     @Override
     public void run() {
-//         //In departure airport
-//        goingToAirport();
+        GenericIO.writelnString("Started Passenger " + getPassengerId() + " activity");
+        goingToAirport();
 //        departureAirport.travelToAirport();
 //        departureAirport.waitInQueue();
 //        departureAirport.showDocuments();
-//        departureAirport.waitingToBeCheckedIn();
-//        //In plane
-//        plane.boardPlane();
-//        plane.waitForPlaneToLand();
-//        plane.leavePlane();
-//
-//        //In arrival airport
-//        arrivalAirport.leaveAirport();
+//        Passenger.boardThePlane();
+//        Passenger.waitForEndOfFlight();
+//        Passenger.leaveThePlane();
+//        destinationAirport.leaveAirport();
+        GenericIO.writelnString("Ended Passenger " + getPassengerId() + " activity");
     }
-    
+
+    /**
+     * The passenger goes to the airport.
+     *
+     * Internal operation.
+     */
+    private void goingToAirport() {
+        int randomSleepValue = (int) ((Math.random() * (10 - 5)) + 5);
+        try {
+            Thread.sleep(randomSleepValue * 1000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * Get the passenger id
+     *
+     * @return the id
+     */
+    public int getPassengerId() {
+        return idPassenger;
+    }
+
+    /**
+     * Set the passenger id
+     *
+     * @param id the id to set
+     */
+    public void setPassengerId(int id) {
+        this.idPassenger = id;
+    }
+
     /**
      * Get the passenger state
+     *
      * @return the state
      */
     public PassengerState getPassengerState() {
@@ -89,6 +109,7 @@ public class Passenger extends Thread {
 
     /**
      * Set the passenger state
+     *
      * @param state the state to set
      */
     public void setPassengerState(PassengerState state) {

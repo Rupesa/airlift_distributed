@@ -2,6 +2,13 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group/>
+        <group>
+            <file>file:/C:/Users/User/Desktop/airlift_distributed/AirLift_89293_89264_ass2/src/DepartureAirport/SharedRegion/DepartureAirportProxy.java</file>
+            <file>file:/C:/Users/User/Desktop/airlift_distributed/AirLift_89293_89264_ass2/src/DepartureAirport/Communication/MessageType.java</file>
+            <file>file:/C:/Users/User/Desktop/airlift_distributed/AirLift_89293_89264_ass2/src/DepartureAirport/SharedRegion/ServiceProvider.java</file>
+            <file>file:/C:/Users/User/Desktop/airlift_distributed/AirLift_89293_89264_ass2/src/DepartureAirport/SharedRegion/DepartureAirport.java</file>
+            <file>file:/C:/Users/User/Desktop/airlift_distributed/AirLift_89293_89264_ass2/src/DepartureAirport/SharedRegion/ISharedRegion.java</file>
+            <file>file:/C:/Users/User/Desktop/airlift_distributed/AirLift_89293_89264_ass2/src/DepartureAirport/Communication/Message.java</file>
+        </group>
     </open-files>
 </project-private>
