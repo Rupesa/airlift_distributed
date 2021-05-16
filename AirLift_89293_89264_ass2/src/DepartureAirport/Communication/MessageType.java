@@ -14,35 +14,17 @@ public enum MessageType {
      */
     REPORT_RESULTS,
     /**
-     * Set the number of a new passenger.
-     */
-    SET_PASSENGER_NUMBER,
-    /**
      * Update the state of the passenger.
      */
     UPDATE_PASSENGER_STATE,
-    /**
-     * Signal the end of the current passenger.
-     */
-    END_PASSENGER,
     /**
      * Update the state of the hostess.
      */
     UPDATE_HOSTESS_STATE,
     /**
-     * Signal the end of the current hostess.
-     */
-    END_HOSTESS,
-    /**
      * Update the state of the pilot.
      */
     UPDATE_PILOT_STATE,
-    /**
-     * Signal the end of the current pilot.
-     */
-    END_PILOT,
-       
-    /* ****************************** PASSENGER ***************************** */
     /**
      * The passenger goes to the airport.
      */
@@ -73,7 +55,6 @@ public enum MessageType {
      * The passenger leaves airport.
      */
     LEAVE_AIRPORT,
-    /* ******************************** PILOT ******************************* */
     /**
      * The pilot informs the plane that he is ready to board.
      */
@@ -104,7 +85,6 @@ public enum MessageType {
      * The pilot parks the plane at the transfer gate.
      */
     PARK_AT_TRANSFER_GATE,
-    /* ******************************* HOSTESS ****************************** */
     /**
      * The hostess waits for the next flight to be ready for boarding.
      */
@@ -113,10 +93,6 @@ public enum MessageType {
      * The hostess waits for the next passenger in the queue.
      */
     WAIT_FOR_NEXT_PASSENGER,
-    /**
-     * The hostess ask passenger for documents.
-     */
-    ASK_FOR_DOCUMENTS,
     /**
      * The hostess asks the passenger for the documents and waits for him to
      * deliver them.
@@ -130,4 +106,12 @@ public enum MessageType {
      * The hosstes informs the pilot thar he can end activity.
      */
     INFORM_PILOT_TO_END_ACTIVITY,
+    /**
+     * Answers if the hosstes informs the pilot thar he can end activity.
+     */
+    RETURN_HOSTESS_INFORMS_PILOT_TO_END_ACTIVITY,
+    /**
+     * Control center notifies shared regions that his service has ended.
+     */
+    SERVICE_END,
 }

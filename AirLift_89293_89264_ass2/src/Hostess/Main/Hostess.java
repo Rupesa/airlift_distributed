@@ -48,11 +48,11 @@ public class Hostess extends Thread {
     public void run() {
         GenericIO.writelnString("Started Hostess activity");
         while (maxNumberOfPassengers != numberOfAttendedPassengers) {
-//            departureAirport.waitForNextFlight();
-//            departureAirport.waitForNextPassenger();
-//            departureAirport.checkDocuments();
-//            numberOfAttendedPassengers++;
-//            departureAirport.informPlaneReadyToTakeOff();
+            departureAirport.waitForNextFlight();
+            departureAirport.waitForNextPassenger();
+            departureAirport.checkDocuments();
+            numberOfAttendedPassengers++;
+            departureAirport.informPlaneReadyToTakeOff();
         }
         GenericIO.writelnString("Ended Hostess activity");
     }

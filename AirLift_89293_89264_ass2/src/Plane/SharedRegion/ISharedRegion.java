@@ -14,9 +14,4 @@ public interface ISharedRegion {
      * @return message to be replied
      */
     public Message processAndReply(Message inMessage, ServerComm scon);
-    
-    /**
-     * Check if it is running.
-     */
-    public boolean isRunning(); 
 }

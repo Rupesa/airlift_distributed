@@ -18,9 +18,6 @@ public class ServiceProvider extends Thread {
      */
     private final ISharedRegion rtInt;
     
-//    private int idPassenger;
-//    private boolean allPassengersAreAttended;
-    
     /**
      * Service Provider constructor.
      * @param com communication channel with the server.
@@ -44,40 +41,5 @@ public class ServiceProvider extends Thread {
         com.writeObject(outMessage);
         com.close();
     }
-    
-//    public boolean allPassengersAttended(){
-//        if(allPassengersAreAttended)
-//            return true;
-//        else
-//            return false;
-//    }
-//    
-//    /**
-//     * @return the idPassenger
-//     */
-//    public int getIdPassenger() {
-//        return idPassenger;
-//    }
-//
-//    /**
-//     * @param idPassenger the idPassenger to set
-//     */
-//    public void setIdPassenger(int idPassenger) {
-//        this.idPassenger = idPassenger;
-//    }
-//
-//    /**
-//     * @return the allPassengersAreAttended
-//     */
-//    public boolean isAllPassengersAreAttended() {
-//        return allPassengersAreAttended;
-//    }
-//
-//    /**
-//     * @param allPassengersAreAttended the allPassengersAreAttended to set
-//     */
-//    public void setAllPassengersAreAttended(boolean allPassengersAreAttended) {
-//        this.allPassengersAreAttended = allPassengersAreAttended;
-//    }
 }
 

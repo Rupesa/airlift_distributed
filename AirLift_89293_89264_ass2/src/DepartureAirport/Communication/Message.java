@@ -1,6 +1,5 @@
 package DepartureAirport.Communication;
 
-import DepartureAirport.EntitiesState.*;
 import java.io.Serializable;
 
 /**
@@ -16,136 +15,83 @@ public class Message implements Serializable {
     private MessageType type;
 
     /**
+     * Hostess inform pilot to end activity.
+     */
+    private boolean informPilotToEndActivity;
+
+    /**
      * Id of passenger.
      */
     private int idPassenger;
 
     /**
-     * Check if operation was done.
+     * Constructor of Message.
      */
-    private boolean operationDone;
-    /**
-     * Check if response was a boolean value.
-     */
-    private boolean responseBoolean;
-    /**
-     * Check if the hostess has already attendeded all passengers.
-     */
-    private boolean hostessAttendendedAllPassengers;
+    public Message() {
+        this.idPassenger = -1;
+        this.informPilotToEndActivity = false;
+    }
 
-//    /**
-//     * State of the hostess.
-//     */
-//    private HostessState hostessState;
-//
-//    /**
-//     * State of the pilot.
-//     */
-//    private PilotState pilotState;
-//
-//    /**
-//     * State of the passenger.
-//     */
-//    private PassengerState passengerState;
     /**
-     * Constructor with only the type of the message.
+     * Constructor of Message.
      *
-     * @param type type of the message
+     * @param type
      */
     public Message(MessageType type) {
-        this.idPassenger = -1;
         this.type = type;
     }
 
     /**
-     * Constructor with the type of the message and an integer argument.
+     * Constructor of Message.
      *
-     * @param id integer argument
-     * @param type type of the message
+     * @param id
+     * @param type
      */
     public Message(MessageType type, int id) {
-        this.idPassenger = id;
         this.type = type;
+        this.idPassenger = id;
     }
 
     /**
      * Constructor with the type of the message and a boolean.
      *
+     * @param type type of the message
      * @param bool boolean argument
      */
-    public Message(boolean bool) {
-        this.operationDone = operationDone;
+    public Message(MessageType type, boolean bool) {
+        this();
+        this.type = type;
+        switch (type) {
+            case RETURN_HOSTESS_INFORMS_PILOT_TO_END_ACTIVITY:
+                this.informPilotToEndActivity = bool;
+                break;
+        }
     }
 
     /**
-     * Get the type of the message
+     * Get message type.
      *
-     * @return message type
+     * @return type
      */
-    public MessageType getMessageType() {
+    public MessageType getMethodType() {
         return type;
     }
 
     /**
-     * Get the id of the passenger
+     * Hostess informs pilot to end activity.
      *
-     * @return passenger id
+     * @return informPilotToEndActivity
+     */
+    public boolean informPilotToEndActivity() {
+        return informPilotToEndActivity;
+    }
+
+    /**
+     * Get id of passenger.
+     *
+     * @return idPassenger
      */
     public int getIdPassenger() {
         return this.idPassenger;
-    }
-
-    /**
-     * Set of operation was done.
-     *
-     * @param value
-     */
-    public void setOperationDone(boolean value) {
-        this.operationDone = value;
-    }
-
-    /**
-     * Get of operation was done.
-     *
-     * @return operationDone
-     */
-    public boolean getOperationDone() {
-        return operationDone;
-    }
-
-    /**
-     * Set of response was boolean value.
-     *
-     * @param value
-     */
-    public void setResponseBoolValue(boolean value) {
-        this.responseBoolean = value;
-    }
-
-    /**
-     * Set of response was boolean value.
-     *
-     * @return responseBoolean
-     */
-    public boolean getResponseBoolValue() {
-        return responseBoolean;
-    }
-
-    /**
-     * Set of the hostess has already attendeded all passengers.
-     *
-     * @param value
-     */
-    public void sethostessAttendendedAllPassengers(boolean value) {
-        hostessAttendendedAllPassengers = value;
-    }
-
-    /**
-     * Get of the hostess has already attendeded all passengers.
-     *
-     * @return hostessAttendendedAllPassengers
-     */
-    public boolean gethostessAttendendedAllPassengers() {
-        return hostessAttendendedAllPassengers;
     }
 }

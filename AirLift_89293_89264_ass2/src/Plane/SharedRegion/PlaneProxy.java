@@ -13,76 +13,69 @@ public class PlaneProxy implements ISharedRegion {
     /**
      * Plane used to process the messages.
      */
-    private final Plane pl;
-    
-    private boolean isRunning;
+    private final Plane plane;
     
     /**
      * Plane Proxy constructor.
-     * @param dp to process the messages
+     * @param plane to process the messages
      */
-    public PlaneProxy(Plane pl){
-        this.pl = pl;
-        isRunning = true;
+    public PlaneProxy(Plane plane){
+        this.plane = plane;
     }
-        
+           
     /**
-     * Process and reply a message
-     * @param inMessage message to be processed
+     * Process and reply a message.
+     *
+     * @param inMessage message received
      * @param scon communication channel
      * @return message to be replied
      */
     @Override
-    public Message processAndReply(Message inMessage, ServerComm scon){
+    public Message processAndReply(Message inMessage, ServerComm scon) {
         Message outMessage = null;
-        ServiceProvider sp = (ServiceProvider) Thread.currentThread();
-        
-        switch(inMessage.getMethodType()){
-            case BOARD_THE_PLANE:{
-//                sp.setPassengerID(inMessage.getIdPassenger());
-//                pl.boardPlane();
-                outMessage.setOperationDone(true);
+
+        switch (inMessage.getMethodType()) {
+            case BOARD_THE_PLANE: {
+                plane.boardThePlane(inMessage.getIdPassenger());
+                outMessage = new Message(MessageType.STATUS_OK);
                 break;
             }
-            case WAIT_FOR_END_OF_FLIGHT:{
-//                sp.setPassengerID(inMessage.getIdPassenger());
-//                pl.waitForEndOfFlight();
-                outMessage.setOperationDone(true);
+            case WAIT_FOR_END_OF_FLIGHT: {
+                plane.waitForEndOfFlight();
+                outMessage = new Message(MessageType.STATUS_OK);
                 break;
             }
-            case LEAVE_THE_PLANE:{
-//                sp.setPassengerID(inMessage.getIdPassenger());
-//                pl.leaveThePlane();
-                outMessage.setOperationDone(true);
+            case LEAVE_THE_PLANE: {
+                plane.leaveThePlane(inMessage.getIdPassenger());
+                outMessage = new Message(MessageType.STATUS_OK);
                 break;
             }
-            case ANNOUNCE_ARRIVAL:{
-//                pl.announceArrival();
-                outMessage.setOperationDone(true);
+            case ANNOUNCE_ARRIVAL: {
+                plane.announceArrival();
+                outMessage = new Message(MessageType.STATUS_OK);
                 break;
             }
-            case WAIT_FOR_DEBOARDING:{
-//                pl.waitForDeboarding();
-                outMessage.setOperationDone(true);
+            case FLY_TO_DESTINATION_POINT: {
+                plane.flyToDestinationPoint();
+                outMessage = new Message(MessageType.STATUS_OK);
                 break;
             }
-            case INFORM_NO_MORE_FLIGHTS_NEEDED:{
-                outMessage.setOperationDone(true);
-                synchronized (this){
-                    isRunning = false;
-                }
+            case FLY_TO_DEPARTURE_POINT: {
+                plane.flyToDeparturePoint();
+                outMessage = new Message(MessageType.STATUS_OK);
+                break;
+            }
+            case PARK_AT_TRANSFER_GATE: {
+                plane.parkAtTransferGate();
+                outMessage = new Message(MessageType.STATUS_OK);
+                break;
+            }
+            case SERVICE_END: {
+                plane.serviceEnd();
+                outMessage = new Message(MessageType.STATUS_OK);
                 break;
             }
         }
         return outMessage;
-    }
-    
-    /**
-     * Running 
-     * @return check if it is running
-     */
-    @Override
-    public synchronized boolean isRunning(){
-        return isRunning;
     }
 }

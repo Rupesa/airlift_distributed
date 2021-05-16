@@ -32,17 +32,12 @@ public class GeneralRepos {
      */
     private PilotState pilotState;
     private PilotState lastPilotReportedState;
-//    private int pilotState;
-//    private int lastPilotReportedState;
 
     /**
      * State of the hostess.
      */
     private HostessState hostessState;
     private HostessState lastHostessReportedState;
-//    private int hostessState;
-//    private int lastHostessReportedState;
-
     /**
      * State of the passengers.
      */
@@ -111,7 +106,6 @@ public class GeneralRepos {
      * @param state pilot state
      */
     public synchronized void updatePilotState(PilotState state) {
-//        previousPilotState = pilotState;
         pilotState = state;
         reportStatus();
     }
@@ -131,7 +125,6 @@ public class GeneralRepos {
         /**
      * Set hostess state.
      *
-     * @param id id passenger
      * @param state hostess state
      */
     public synchronized void updateHostessState(HostessState state) {
@@ -310,4 +303,10 @@ public class GeneralRepos {
         }
     }
 
+    /**
+     * Terminates the logger service.
+     */
+    public synchronized void serviceEnd(){
+        MainProgram.serviceEnd = true;
+    }
 }

@@ -3,114 +3,94 @@ package DepartureAirport.SharedRegion;
 import DepartureAirport.Communication.*;
 
 /**
- * DepartureAiport proxy for the logger shared region.
- * Implements the ISharedRegion interface, and listens to the requests,
- * processes them and replies.
+ * DepartureAiport proxy for the logger shared region. Implements the
+ * ISharedRegion interface, and listens to the requests, processes them and
+ * replies.
  */
 public class DepartureAirportProxy implements ISharedRegion {
-    
+
     /**
      * DepartureAiport used to process the messages.
      */
     private final DepartureAirport departureAirport;
-    
-    private boolean isRunning;
-    
+
     /**
      * DepartureAiport Proxy constructor.
+     *
      * @param dp padock to process the messages
      */
-    public DepartureAirportProxy(DepartureAirport dp){
+    public DepartureAirportProxy(DepartureAirport dp) {
         this.departureAirport = dp;
-        this.isRunning = true;
     }
-    
+
     /**
      * Process and reply a message.
+     *
      * @param inMessage message received
      * @param scon communication channel
      * @return message to be replied
      */
     @Override
-    public Message processAndReply(Message inMessage, ServerComm scon){
-        Message outMessage = new Message(false);
-        ServiceProvider sp = (ServiceProvider) Thread.currentThread();
-        
-        switch(inMessage.getMessageType()){
-            
-            case WAIT_FOR_NEXT_FLIGHT:
+    public Message processAndReply(Message inMessage, ServerComm scon) {
+        Message outMessage = null;
+
+        switch (inMessage.getMethodType()) {
+            case WAIT_FOR_NEXT_FLIGHT: {
                 departureAirport.waitForNextFlight();
-                outMessage.setOperationDone(true);
+                outMessage = new Message(MessageType.STATUS_OK);
                 break;
-
-            case WAIT_FOR_NEXT_PASSENGER:
+            }
+            case WAIT_FOR_NEXT_PASSENGER: {
                 departureAirport.waitForNextPassenger();
-                outMessage.setOperationDone(true);
+                outMessage = new Message(MessageType.STATUS_OK);
                 break;
-
-            case ASK_FOR_DOCUMENTS:
+            }
+            case CHECK_DOCUMENTS: {
                 departureAirport.checkDocuments();
-                outMessage.setOperationDone(true);
+                outMessage = new Message(MessageType.STATUS_OK);
                 break;
-
-//            case CHECK_DOCUMENTS:
-////                sp.setPassengerID(inMessage.getIdPassenger());
-////                departureAirport.waitingToBeCheckedIn();
-//                outMessage = new Message(MessageType.STATUS_HOSTESS_OK);
-//                break;
-                
-            case INFORM_PLANE_READY_TO_TAKE_OFF:
-//                sp.setAllPassengersAttended(inMessage.gethostessAttendendedAllPassengers());
-//                outMessage.setResponseBoolValue(departureAirport.informReadyToFly());
-                outMessage.setOperationDone(true);
+            }
+            case INFORM_PLANE_READY_TO_TAKE_OFF: {
+                departureAirport.informPlaneReadyToTakeOff();
+                outMessage = new Message(MessageType.STATUS_OK);
                 break;
-
-            case TRAVEL_TO_AIPORT:
-//                sp.setPassengerID(inMessage.getIdPassenger());
+            }
+            case TRAVEL_TO_AIPORT: {
                 departureAirport.travelToAirport(inMessage.getIdPassenger());
-                outMessage.setOperationDone(true);
+                outMessage = new Message(MessageType.STATUS_OK);
                 break;
-
-            case WAIT_IN_QUEUE:
-//                sp.setPassengerID(inMessage.getIdPassenger());
+            }
+            case WAIT_IN_QUEUE: {
                 departureAirport.waitInQueue(inMessage.getIdPassenger());
-                outMessage.setOperationDone(true);
+                outMessage = new Message(MessageType.STATUS_OK);
                 break;
-
-            case SHOW_DOCUMENTS:
-//                sp.setPassengerID(inMessage.getIdPassenger());
+            }
+            case SHOW_DOCUMENTS: {
                 departureAirport.showDocuments();
-                outMessage.setOperationDone(true);
+                outMessage = new Message(MessageType.STATUS_OK);
                 break;
-
-            case INFORM_PLANE_READY_FOR_BOARDING:
+            }
+            case INFORM_PLANE_READY_FOR_BOARDING: {
                 departureAirport.informPlaneReadyForBoarding();
-                outMessage.setOperationDone(true);
+                outMessage = new Message(MessageType.STATUS_OK);
                 break;
-
-            case WAIT_FOR_ALL_IN_BOARD:
+            }
+            case WAIT_FOR_ALL_IN_BOARD: {
                 departureAirport.waitForAllInBoard();
-                outMessage.setOperationDone(true);
+                outMessage = new Message(MessageType.STATUS_OK);
                 break;
-
-            case INFORM_PILOT_TO_END_ACTIVITY:
+            }           
+            case INFORM_PILOT_TO_END_ACTIVITY: {
                 boolean value = departureAirport.informPilotToEndActivity();
-//                outMessage.setResponseBoolValue(value);
-                outMessage.setOperationDone(true);
-           
-//                synchronized (this){
-//                    if(value){
-//                        isRunning = false;
-//                    }
-//                }
+                outMessage = new Message(MessageType.RETURN_HOSTESS_INFORMS_PILOT_TO_END_ACTIVITY, value);
                 break;
+            }
+            case SERVICE_END: {
+                departureAirport.serviceEnd();
+                outMessage = new Message(MessageType.STATUS_OK);
+                break;
+            }
         }
-            
         return outMessage;
     }
-    
-//    @Override
-//    public synchronized boolean isRunning(){
-//        return isRunning;
-//    }
 }

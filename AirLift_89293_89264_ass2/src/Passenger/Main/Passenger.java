@@ -56,13 +56,13 @@ public class Passenger extends Thread {
     public void run() {
         GenericIO.writelnString("Started Passenger " + getPassengerId() + " activity");
         goingToAirport();
-//        departureAirport.travelToAirport();
-//        departureAirport.waitInQueue();
-//        departureAirport.showDocuments();
-//        Passenger.boardThePlane();
-//        Passenger.waitForEndOfFlight();
-//        Passenger.leaveThePlane();
-//        destinationAirport.leaveAirport();
+        departureAirport.travelToAirport(getPassengerId());
+        departureAirport.waitInQueue(getPassengerId());
+        departureAirport.showDocuments();
+        plane.boardThePlane(getPassengerId());
+        plane.waitForEndOfFlight();
+        plane.leaveThePlane(getPassengerId());
+        destinationAirport.leaveAirport();
         GenericIO.writelnString("Ended Passenger " + getPassengerId() + " activity");
     }
 

@@ -1,6 +1,7 @@
 package DepartureAirport.SharedRegion;
 
 import DepartureAirport.EntitiesState.*;
+import DepartureAirport.Main.*;
 import DepartureAirport.Stubs.*;
 import commInfra.MemException;
 import commInfra.MemFIFO;
@@ -302,5 +303,12 @@ public class DepartureAirport {
      */
     public synchronized boolean informPilotToEndActivity() {
         return hostessInformPilotToEndActivity;
+    }
+
+    /**
+     * Terminate the departure airport service.
+     */
+    public synchronized void serviceEnd() {
+        MainProgram.serviceEnd = true;
     }
 }

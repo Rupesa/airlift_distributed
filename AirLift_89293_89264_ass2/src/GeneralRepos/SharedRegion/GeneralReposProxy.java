@@ -34,26 +34,17 @@ public class GeneralReposProxy implements ISharedRegion {
         
         switch(inMessage.getMethodType()){
             case UPDATE_HOSTESS_STATE:
-                repos.updateHostessState(inMessage.getHostessState(), inMessage.getIdPassenger());
+//                repos.updateHostessState(inMessage.getHostessState(), inMessage.getIdPassenger());
                 outMessage = new Message(MessageType.STATUS_OK);
                 break;
             case UPDATE_PILOT_STATE:
-                repos.updatePilotState(inMessage.getPilotState());
+//                repos.updatePilotState(inMessage.getPilotState());
                 outMessage = new Message(MessageType.STATUS_OK);
                 break;
             case UPDATE_PASSENGER_STATE:
-                repos.updatePassengerState(inMessage.getPassengerState(), inMessage.getIdPassenger());
+//                repos.updatePassengerState(inMessage.getPassengerState(), inMessage.getIdPassenger());
                 outMessage = new Message(MessageType.STATUS_OK);
                 break;
-//            case REPORT_RESULTS:
-//                repos.reportResults(inMessage.getHorseIds(), inMessage.getHorsePositions());
-//                outMessage = new Message(MessageType.STATUS_OK);
-//                break;
-//            case SERVICE_END:
-//                repos.serviceEnd();
-//                outMessage = new Message(MessageType.STATUS_OK);
-//                break;
-            
         }
         return outMessage;
     }

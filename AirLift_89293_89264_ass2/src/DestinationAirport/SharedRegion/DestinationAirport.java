@@ -1,5 +1,6 @@
 package DestinationAirport.SharedRegion;
 
+import DestinationAirport.Main.MainProgram;
 import DestinationAirport.Stubs.*;
 import genclass.GenericIO;
 
@@ -18,6 +19,7 @@ public class DestinationAirport {
 
     /**
      * DestinationAirport class constructor.
+     *
      * @param repos
      */
     public DestinationAirport(GeneralRepos repos) {
@@ -31,5 +33,12 @@ public class DestinationAirport {
     public synchronized void leaveAirport() {
         GenericIO.writelnString("(26) Passenger leave airport");
         numberOfPassengersLeavingThePlane++;
+    }
+
+    /**
+     * Terminate the departure airport service.
+     */
+    public synchronized void serviceEnd() {
+        MainProgram.serviceEnd = true;
     }
 }
