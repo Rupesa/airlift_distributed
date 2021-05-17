@@ -22,47 +22,47 @@ echo -e "\n${bold}* Compilação do código em cada nó *${normal}"
 
 echo -e "\n${bold}->${normal} A compilar Logger"
 cd Logger/
-javac $(find . -name '*.java')
+javac -classpath ../lib/genclass.jar $(find . -name '*.java')
 cd ..
 
 echo -e "\n${bold}->${normal} A compilar BettingCenter"
 cd BettingCenter/
-javac $(find . -name '*.java')
+javac -classpath ../lib/genclass.jar $(find . -name '*.java')
 cd ..
 
 echo -e "\n${bold}->${normal} A compilar ControlCenter"
 cd ControlCenter/
-javac $(find . -name '*.java')
+javac -classpath ../lib/genclass.jar $(find . -name '*.java')
 cd ..
 
 echo -e "\n${bold}->${normal} A compilar Paddock"
 cd Paddock/
-javac $(find . -name '*.java')
+javac -classpath ../lib/genclass.jar $(find . -name '*.java')
 cd ..
 
 echo -e "\n${bold}->${normal} A compilar RacingTrack"
 cd RacingTrack/
-javac $(find . -name '*.java')
+javac -classpath ../lib/genclass.jar $(find . -name '*.java')
 cd ..
 
 echo -e "\n${bold}->${normal} A compilar Stable"
 cd Stable/
-javac $(find . -name '*.java')
+javac -classpath ../lib/genclass.jar $(find . -name '*.java')
 cd ..
 
 echo -e "\n${bold}->${normal} A compilar Broker"
 cd Broker
-javac $(find . -name '*.java')
+javac -classpath ../lib/genclass.jar $(find . -name '*.java')
 cd ..
 
 echo -e "\n${bold}->${normal} A compilar Horses"
 cd Horses
-javac $(find . -name '*.java')
+javac -classpath ../lib/genclass.jar $(find . -name '*.java')
 cd ..
 
 echo -e "\n${bold}->${normal} A compilar Spectators"
 cd Spectators
-javac $(find . -name '*.java')
+javac -classpath ../lib/genclass.jar $(find . -name '*.java')
 cd ..
 
 

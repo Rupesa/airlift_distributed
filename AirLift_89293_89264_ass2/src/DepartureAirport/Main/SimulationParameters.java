@@ -28,42 +28,42 @@ public class SimulationParameters {
     /**
      * General Repository server host name.
      */
-    public final static String REPOS_HOST_NAME = "l040101-ws01.ua.pt";
+    public final static String REPOS_HOST_NAME = "localhost";
     
     /**
      * General Repository server port.
      */
-    public final static int REPOS_PORT = 22425;
+    public final static int REPOS_PORT = 8081;
     
     /**
      * Departure Airport server host name.
      */
-    public final static String DEPARTURE_AIRPORT_HOST_NAME = "l040101-ws02.ua.pt";
+    public final static String DEPARTURE_AIRPORT_HOST_NAME = "localhost";
     
     /**
      * Departure Airport server port.
      */
-    public final static int DEPARTURE_AIRPORT_PORT = 22420;
+    public final static int DEPARTURE_AIRPORT_PORT = 8082;
     
     /**
      * Destination Airport server host name.
      */
-    public final static String DESTINATION_AIRPORT_HOST_NAME = "l040101-ws03.ua.pt";
+    public final static String DESTINATION_AIRPORT_HOST_NAME = "localhost";
     
     /**
      * Destination Airport server port.
      */
-    public final static int DESTINATION_AIRPORT_PORT = 22421;
+    public final static int DESTINATION_AIRPORT_PORT = 8083;
 
     /**
      * Plane server host name.
      */
-    public final static String PLANE_HOST_NAME = "l040101-ws04.ua.pt";
+    public final static String PLANE_HOST_NAME = "localhost";
     
     /**
      * Plane server port.
      */
-    public final static int PLANE_PORT = 22422;
+    public final static int PLANE_PORT = 8084;
     
     /**
     *   It can not be instantiated.

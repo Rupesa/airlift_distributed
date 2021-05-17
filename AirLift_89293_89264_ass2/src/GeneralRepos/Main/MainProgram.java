@@ -37,33 +37,18 @@ public class MainProgram {
         
         /* problem initialization */
         GenericIO.writelnString ("\n" + "      Problem of the Air Lift\n");
-        do {
-            GenericIO.writeString ("Logging file name? ");
-            fileName = GenericIO.readlnString ();
-            if (FileOp.exists (".", fileName)){
-                do {
-                    GenericIO.writeString ("There is already a file with this name. Delete it (y - yes; n - no)? ");
-                    opt = GenericIO.readlnChar ();
-                } while ((opt != 'y') && (opt != 'n'));
-                if (opt == 'y')
-                    success = true;
-                else 
-                    success = false;
-           }
-           else 
-                success = true;
-        } while (!success);
 
         /**
          * Shared region and proxy initialization.
          */
-        GeneralRepos repos = new GeneralRepos(fileName);
+        GeneralRepos repos = new GeneralRepos("rep.txt");
 
         GeneralReposProxy loggerInt = new GeneralReposProxy(repos);
 
         /**
          * Start listening on the communication channel.
          */
+        GenericIO.writelnString (""+SimulationParameters.REPOS_PORT);
         scon = new ServerComm(SimulationParameters.REPOS_PORT);
         scon.start();
 
@@ -73,9 +58,12 @@ public class MainProgram {
          */
         while (!serviceEnd) {
             try {
+                GenericIO.writelnString ("Passou 1\n");
                 sconi = scon.accept();
+                GenericIO.writelnString ("Passou 1.5\n");
                 sp = new ServiceProvider(sconi, loggerInt);
                 sp.start();
+                GenericIO.writelnString ("Passou 2\n");
             } catch (SocketTimeoutException ex) {
             }
         }

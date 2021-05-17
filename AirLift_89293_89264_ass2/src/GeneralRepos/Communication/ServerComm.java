@@ -112,9 +112,12 @@ public class ServerComm {
     public ServerComm accept () throws SocketTimeoutException {
         ServerComm scon;                                      // communication channel
 
+        System.out.println("Hey1");
         scon = new ServerComm(serverPortNumb, listeningSocket);
+        System.out.println("Hey2");
         try { 
             scon.commSocket = listeningSocket.accept();
+            System.out.println("Hey3");
         }
         catch (SocketException e) { 
             System.out.println (Thread.currentThread ().getName () +

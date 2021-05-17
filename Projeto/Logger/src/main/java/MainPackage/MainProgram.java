@@ -77,9 +77,11 @@ public class MainProgram {
          */
         while(!serviceEnd){
             try {
+                System.out.println("Passou 1\n");
                 sconi = scon.accept();
                 sp = new ServiceProvider(sconi, loggerInt);
                 sp.start();
+                System.out.println("Passou 2\n");
             } catch (SocketTimeoutException ex) {
             }
             
