@@ -10,10 +10,6 @@ public enum MessageType {
      */
     STATUS_OK,
     /**
-     * Signal the passenger that the results will be reported.
-     */
-    REPORT_RESULTS,
-    /**
      * Update the state of the passenger.
      */
     UPDATE_PASSENGER_STATE,

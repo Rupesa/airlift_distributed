@@ -99,7 +99,7 @@ public class GeneralRepos {
         this.numOfFlight = nFlight;
         voos[numOfFlight - 1] = numOfFlight + "-" + nPassengers;
     }
-    
+
     /**
      * Set pilot state.
      *
@@ -122,7 +122,7 @@ public class GeneralRepos {
         reportStatus();
     }
 
-        /**
+    /**
      * Set hostess state.
      *
      * @param state hostess state
@@ -131,7 +131,7 @@ public class GeneralRepos {
         hostessState = state;
         reportStatus();
     }
-    
+
     /**
      * Set passenger state.
      *
@@ -142,7 +142,7 @@ public class GeneralRepos {
         passengerState[id] = state;
         reportStatus();
     }
-   
+
     /**
      * Write the header to the logging file.
      *
@@ -306,7 +306,7 @@ public class GeneralRepos {
     /**
      * Terminates the logger service.
      */
-    public synchronized void serviceEnd(){
+    public synchronized void serviceEnd() {
         MainProgram.serviceEnd = true;
     }
 }

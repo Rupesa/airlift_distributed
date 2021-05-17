@@ -1,5 +1,6 @@
 package Plane.SharedRegion;
 
+import Plane.EntitiesState.*;
 import Plane.Main.MainProgram;
 import Plane.Stubs.*;
 import commInfra.MemException;
@@ -55,20 +56,16 @@ public class Plane {
      * The passenger boards the plane. It is called by a passenger.
      */
     public synchronized void boardThePlane(int id) {
-        /* change state of passanger to INFL */
-//        AEPassenger pass = (AEPassenger) Thread.currentThread();
-//        pass.setPassengerState(AEPassengerStates.INFL);
-//        repos.setPassengerState(pass.getPassengerId(), pass.getPassengerState());
+        /* change state of passenger to INFL */
+        repos.updatePassengerState(PassengerState.IN_FLIGHT, id);
 
         /* add passenger to the queue of passengers */
         try {
             passengers.write(id);
-//            passengers.write(pass.getPassengerId());
         } catch (MemException ex) {
             Logger.getLogger(Plane.class.getName()).log(Level.SEVERE, null, ex);
         }
         GenericIO.writelnString("(16) Passenger " + id + " boarded the plane");
-//        GenericIO.writelnString("(16) Passenger " + pass.getPassengerId() + " boarded the plane");  
     }
 
     /**
@@ -93,21 +90,16 @@ public class Plane {
      */
     public synchronized void leaveThePlane(int id) {
         /* remove passenger from the queue of passangers */
-//        AEPassenger pass = (AEPassenger) Thread.currentThread();
-//        passengers.remove(pass.getPassengerId());
         passengers.remove(id);
         GenericIO.writelnString("(19) Passenger " + id + " left the plane");
-//        GenericIO.writelnString("(19) Passenger " + pass.getPassengerId() + " left the plane"); 
 
         /* change state of passanger to ATDS */
-//        pass.setPassengerState(AEPassengerStates.ATDS);
-//        repos.setPassengerState(pass.getPassengerId(), pass.getPassengerState());
+        repos.updatePassengerState(PassengerState.AT_DESTINATION, id);
         /* the last passenger notifies the pilot that he is the last */
         if (passengers.empty()) {
             lastPassengerLeaveThePlane = true;
             notify();
             GenericIO.writelnString("(20) Passenger " + id + " notified the pilot that he is the last");
-//            GenericIO.writelnString("(20) Passenger " + pass.getPassengerId() + " notified the pilot that he is the last");  
         }
     }
 
@@ -124,9 +116,8 @@ public class Plane {
         notifyAll();
 
         /* change state of pilot to DRPP */
-//        AEPilot pilot = (AEPilot) Thread.currentThread();
-//        pilot.setPilotState(AEPilotStates.DRPP);
-//        repos.setPilotState(pilot.getPilotState());
+        repos.updatePilotState(PilotState.DEBOARDING);
+
         /* wait for the last passenger to notify that he is the last to leave */
         GenericIO.writelnString("(22) Pilot is waiting for deboarding");
         while (!lastPassengerLeaveThePlane) {
@@ -148,9 +139,7 @@ public class Plane {
      */
     public synchronized void flyToDestinationPoint() {
         /* change state of pilot to FLFW */
-//        AEPilot pilot = (AEPilot) Thread.currentThread();
-//        pilot.setPilotState(AEPilotStates.FLFW);
-//        repos.setPilotState(pilot.getPilotState());
+        repos.updatePilotState(PilotState.FLYING_FORWARD);
 
         /* fly to destinaton airport */
         GenericIO.writelnString("(23) Pilot flies to destination point");
@@ -166,9 +155,7 @@ public class Plane {
      */
     public synchronized void flyToDeparturePoint() {
         /* change state of pilot to FLBK */
-//        AEPilot pilot = (AEPilot) Thread.currentThread();
-//        pilot.setPilotState(AEPilotStates.FLBK);
-//        repos.setPilotState(pilot.getPilotState());
+        repos.updatePilotState(PilotState.FLYING_BACK);
 
         /* fly to departure airport */
         GenericIO.writelnString("(24) Pilot flies to departure point");
@@ -184,9 +171,7 @@ public class Plane {
      */
     public synchronized void parkAtTransferGate() {
         /* change state of pilot to ATGR */
-//        AEPilot pilot = (AEPilot) Thread.currentThread();
-//        pilot.setPilotState(AEPilotStates.ATGR);
-//        repos.setPilotState(pilot.getPilotState());
+        repos.updatePilotState(PilotState.AT_TRANSFER_GATE);
 
         /* parks the plane at the transfer gate */
         GenericIO.writelnString("(25) Pilot park at transfer gate");

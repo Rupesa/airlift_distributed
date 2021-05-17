@@ -79,7 +79,7 @@ public class DepartureAirport {
      */
     public synchronized void waitForNextFlight() {
         /* change state of hostess to WTFL */
-//        if (HostessState.getState() == HostessState.READY_TO_FLY.toString()) {
+//        if (HostessState.toString() == HostessState.READY_TO_FLY.toString()) {
 //            repos.updateHostessState(HostessState.WAIT_FOR_FLIGHT, currentPassenger);
 //        }
 
@@ -284,7 +284,7 @@ public class DepartureAirport {
         GenericIO.writelnString("(15) Boarding is finished and pilot is going to fly");
 
         /* set information of flight */
-        repos.updateInfoBoard(numberOfFilght, numberOfPassengerOnThePlane);
+        repos.updateInfoBoardPlane(numberOfFilght, numberOfPassengerOnThePlane);
         GenericIO.writelnString("FLIGHT " + numberOfFilght + " with " + numberOfPassengerOnThePlane + " passengers");
 
         /* travel time (added so that you can see other passengers arriving at the airport during the flight) */
