@@ -11,7 +11,7 @@ public class ServiceProvider extends Thread {
     /**
      * Communication channel with the server.
      */
-    private final ServerComm com;
+    private final ServerCom com;
     
     /**
      * Shared region implementation.
@@ -23,7 +23,7 @@ public class ServiceProvider extends Thread {
      * @param com communication channel with the server.
      * @param rtInt shared region.
      */
-    public ServiceProvider(ServerComm com, ISharedRegion rtInt){
+    public ServiceProvider(ServerCom com, ISharedRegion rtInt){
         this.com = com;
         this.rtInt = rtInt;
     }

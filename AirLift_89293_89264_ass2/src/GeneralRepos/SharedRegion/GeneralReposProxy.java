@@ -30,7 +30,7 @@ public class GeneralReposProxy implements ISharedRegion {
      * @return message to be replied
      */
     @Override
-    public Message processAndReply(Message inMessage, ServerComm scon) {
+    public Message processAndReply(Message inMessage, ServerCom scon) {
         Message outMessage = null;
 
         switch (inMessage.getMethodType()) {

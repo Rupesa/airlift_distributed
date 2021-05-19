@@ -20,8 +20,11 @@ public class MainProgram {
      * @param args args
      */
     public static void main(String [] args){
+
         /* Communication channels. */
-        ServerComm scon, sconi;
+        ServerCom scon;
+
+        ServerCom sconi;
         ServiceProvider sp;
         
         /* Stub initialization. */
@@ -34,7 +37,7 @@ public class MainProgram {
         /**
          * Start listening on the communication channel.
          */
-        scon = new ServerComm(SimulationParameters.DEPARTURE_AIRPORT_PORT);
+        scon = new ServerCom(SimulationParameters.DEPARTURE_AIRPORT_PORT);
         scon.start();
         
         /**
@@ -42,12 +45,12 @@ public class MainProgram {
          * to the service provider.
          */
         while(!serviceEnd){
-            try {
+//            try {
                 sconi = scon.accept();
                 sp = new ServiceProvider(sconi, pdInt);
                 sp.start();
-            } catch (SocketTimeoutException ex) {
-            }
+//            } catch (SocketTimeoutException ex) {
+//            }
         }
     }
 }

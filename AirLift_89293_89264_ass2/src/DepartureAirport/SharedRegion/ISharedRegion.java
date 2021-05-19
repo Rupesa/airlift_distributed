@@ -14,5 +14,5 @@ public interface ISharedRegion {
      * @param scon communication channel
      * @return message to be replied
      */
-    public Message processAndReply(Message inMessage, ServerComm scon);
+    public Message processAndReply(Message inMessage, ServerCom scon);
 }

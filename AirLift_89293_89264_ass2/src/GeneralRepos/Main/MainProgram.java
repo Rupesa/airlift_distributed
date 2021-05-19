@@ -24,16 +24,14 @@ public class MainProgram {
      */
     public static void main(String args[]) {
         
+
         /**
          * Communication channels.
          */
-        ServerComm scon, sconi;
-        ServiceProvider sp;
+        ServerCom scon;
 
-        /* file options  */
-        String fileName;
-        char opt;
-        boolean success; 
+        ServerCom sconi;
+        ServiceProvider sp;
         
         /* problem initialization */
         // GenericIO.writelnString ("\n" + "      Problem of the Air Lift\n");
@@ -49,7 +47,7 @@ public class MainProgram {
          * Start listening on the communication channel.
          */
         // GenericIO.writelnString (""+SimulationParameters.REPOS_PORT);
-        scon = new ServerComm(SimulationParameters.REPOS_PORT);
+        scon = new ServerCom(SimulationParameters.REPOS_PORT);
         scon.start();
 
         /**
@@ -57,15 +55,15 @@ public class MainProgram {
          * to the service provider.
          */
         while (!serviceEnd) {
-            try {
+//            try {
                 //GenericIO.writelnString ("Passou 1\n");
                 sconi = scon.accept();
                 //GenericIO.writelnString ("Passou 1.5\n");
                 sp = new ServiceProvider(sconi, loggerInt);
                 sp.start();
                 //GenericIO.writelnString ("Passou 2\n");
-            } catch (SocketTimeoutException ex) {
-            }
+//            } catch (SocketTimeoutException ex) {
+//            }
         }
     }
 }
