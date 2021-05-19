@@ -9,6 +9,12 @@ import java.io.Serializable;
  * Also has getters to get the values from the fields.
  */
 public class Message implements Serializable {
+    
+    /**
+     * Serial version of the class. Format used is 
+     * Class-Group-Number of project (XXYYZZ)
+     */
+    private static final long serialVersionUID = 040602L;
 
     /**
      * Type of the message.

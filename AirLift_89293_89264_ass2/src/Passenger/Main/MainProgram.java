@@ -20,13 +20,28 @@ public class MainProgram {
         /**
          * Passenger lifecycle start.
          */
-        Passenger passenger = new Passenger("Passenger_" + (Integer.parseInt(args[0]) + 1), departureAirport, plane, destinationAirport, Integer.parseInt(args[0]));
-        passenger.start();
-        try {
-            passenger.join();
-        } catch (InterruptedException ex) {
-            ex.printStackTrace();
+
+        Passenger[] passenger = new Passenger[SimulationParameters.TTL_PASSENGER];
+
+        for (int i=0; i < passenger.length; i++){
+            passenger[i] = new Passenger("Passenger_" + i+1, (DepartureAirport) departureAirport, (Plane) plane, (DestinationAirport) destinationAirport, i);
         }
-        GenericIO.writelnString ("The passenger " + (Integer.parseInt(args[0])+1) + " has terminated.");
+
+        for (int i=0; i < passenger.length; i++){
+            passenger[i].start();
+        }
+
+        for (int i=0; i < passenger.length; i++){
+            try{
+                passenger[i].join();
+            }catch (InterruptedException e){
+                e.printStackTrace();                    
+            }
+            
+            GenericIO.writelnString ("The passenger " + (i+1) + " has terminated.");
+            // if (i == 20){
+            //     repos.reportFinalStatus();
+            // }
+        }
     }
 }

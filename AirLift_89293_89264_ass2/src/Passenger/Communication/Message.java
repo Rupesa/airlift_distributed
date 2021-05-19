@@ -1,5 +1,6 @@
 package Passenger.Communication;
 
+import Passenger.EntitiesState.*;
 import java.io.Serializable;
 
 /**
@@ -8,6 +9,12 @@ import java.io.Serializable;
  * Also has getters to get the values from the fields.
  */
 public class Message implements Serializable {
+    
+    /**
+     * Serial version of the class. Format used is 
+     * Class-Group-Number of project (XXYYZZ)
+     */
+    private static final long serialVersionUID = 040602L;
 
     /**
      * Type of the message.
@@ -23,6 +30,19 @@ public class Message implements Serializable {
      * Id of passenger.
      */
     private int idPassenger;
+
+    /**
+     * Entities states.
+     */
+    private HostessState hostessState;
+    private PilotState pilotState;
+    private PassengerState passengerState;
+
+    /**
+     * Information of flight.
+     */
+    private int numOfFlight;
+    private int numPassengersPerFlight;
 
     /**
      * Constructor of Message.
@@ -68,6 +88,72 @@ public class Message implements Serializable {
         }
     }
 
+//    /**
+//     * Constructor with the type of the message and a state of Hostess.
+//     *
+//     * @param type type of the message
+//     * @param state state of hostess argument
+//     */
+//    public Message(MessageType type, HostessState state) {
+//        this();
+//        this.type = type;
+//        this.hostessState = hostessState;
+//    }
+
+    /**
+     * Constructor with the type of the message and a state of Hostess.
+     *
+     * @param type type of the message
+     * @param state state of hostess argument
+     * @param id if of passenger
+     */
+    public Message(MessageType type, HostessState state, int id) {
+        this();
+        this.type = type;
+        this.hostessState = hostessState;
+        this.idPassenger = id;
+    }
+
+    /**
+     * Constructor with the type of the message and a state of Pilot.
+     *
+     * @param type type of the message
+     * @param state state of pilot argument
+     */
+    public Message(MessageType type, PilotState state) {
+        this();
+        this.type = type;
+        this.pilotState = pilotState;
+    }
+
+    /**
+     * Constructor with the type of the message and a state of Passenger.
+     *
+     * @param type type of the message
+     * @param state state of passenger argument
+     * @param id id of passenger
+     */
+    public Message(MessageType type, PassengerState state, int id) {
+        this();
+        this.type = type;
+        this.pilotState = pilotState;
+        this.idPassenger = id;
+    }
+
+    /**
+     * Constructor with the type of the message and a state of Passenger.
+     *
+     * @param type type of the message
+     * @param flight number of flight
+     * @param passengers number of passengers per flight
+     */
+    public Message(MessageType type, int flight, int passengers) {
+        this();
+        this.type = type;
+        this.numOfFlight = numOfFlight;
+        this.numPassengersPerFlight = numPassengersPerFlight;
+    }
+
     /**
      * Get message type.
      *
@@ -93,5 +179,40 @@ public class Message implements Serializable {
      */
     public int getIdPassenger() {
         return this.idPassenger;
+    }
+
+    /**
+     * @return the hostessState
+     */
+    public HostessState getHostessState() {
+        return hostessState;
+    }
+
+    /**
+     * @return the pilotState
+     */
+    public PilotState getPilotState() {
+        return pilotState;
+    }
+
+    /**
+     * @return the passengerState
+     */
+    public PassengerState getPassengerState() {
+        return passengerState;
+    }
+
+    /**
+     * @return the numOfFlight
+     */
+    public int getNumOfFlight() {
+        return numOfFlight;
+    }
+
+    /**
+     * @return the numPassengersPerFlight
+     */
+    public int getNumPassengersPerFlight() {
+        return numPassengersPerFlight;
     }
 }

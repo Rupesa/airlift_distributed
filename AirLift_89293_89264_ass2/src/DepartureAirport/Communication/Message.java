@@ -9,6 +9,12 @@ import java.io.Serializable;
  * Also has getters to get the values from the fields.
  */
 public class Message implements Serializable {
+    
+    /**
+     * Serial version of the class. Format used is 
+     * Class-Group-Number of project (XXYYZZ)
+     */
+    private static final long serialVersionUID = 040602L;
 
     /**
      * Type of the message.
@@ -82,17 +88,17 @@ public class Message implements Serializable {
         }
     }
 
-    /**
-     * Constructor with the type of the message and a state of Hostess.
-     *
-     * @param type type of the message
-     * @param state state of hostess argument
-     */
-    public Message(MessageType type, HostessState state) {
-        this();
-        this.type = type;
-        this.hostessState = hostessState;
-    }
+//    /**
+//     * Constructor with the type of the message and a state of Hostess.
+//     *
+//     * @param type type of the message
+//     * @param state state of hostess argument
+//     */
+//    public Message(MessageType type, HostessState state) {
+//        this();
+//        this.type = type;
+//        this.hostessState = hostessState;
+//    }
 
     /**
      * Constructor with the type of the message and a state of Hostess.
@@ -174,4 +180,40 @@ public class Message implements Serializable {
     public int getIdPassenger() {
         return this.idPassenger;
     }
+
+    /**
+     * @return the hostessState
+     */
+    public HostessState getHostessState() {
+        return hostessState;
+    }
+
+    /**
+     * @return the pilotState
+     */
+    public PilotState getPilotState() {
+        return pilotState;
+    }
+
+    /**
+     * @return the passengerState
+     */
+    public PassengerState getPassengerState() {
+        return passengerState;
+    }
+
+    /**
+     * @return the numOfFlight
+     */
+    public int getNumOfFlight() {
+        return numOfFlight;
+    }
+
+    /**
+     * @return the numPassengersPerFlight
+     */
+    public int getNumPassengersPerFlight() {
+        return numPassengersPerFlight;
+    }
 }
+

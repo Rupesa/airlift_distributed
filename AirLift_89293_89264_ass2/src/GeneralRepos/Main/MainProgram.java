@@ -36,7 +36,7 @@ public class MainProgram {
         boolean success; 
         
         /* problem initialization */
-        GenericIO.writelnString ("\n" + "      Problem of the Air Lift\n");
+        // GenericIO.writelnString ("\n" + "      Problem of the Air Lift\n");
 
         /**
          * Shared region and proxy initialization.
@@ -48,7 +48,7 @@ public class MainProgram {
         /**
          * Start listening on the communication channel.
          */
-        GenericIO.writelnString (""+SimulationParameters.REPOS_PORT);
+        // GenericIO.writelnString (""+SimulationParameters.REPOS_PORT);
         scon = new ServerComm(SimulationParameters.REPOS_PORT);
         scon.start();
 
@@ -58,12 +58,12 @@ public class MainProgram {
          */
         while (!serviceEnd) {
             try {
-                GenericIO.writelnString ("Passou 1\n");
+                //GenericIO.writelnString ("Passou 1\n");
                 sconi = scon.accept();
-                GenericIO.writelnString ("Passou 1.5\n");
+                //GenericIO.writelnString ("Passou 1.5\n");
                 sp = new ServiceProvider(sconi, loggerInt);
                 sp.start();
-                GenericIO.writelnString ("Passou 2\n");
+                //GenericIO.writelnString ("Passou 2\n");
             } catch (SocketTimeoutException ex) {
             }
         }
