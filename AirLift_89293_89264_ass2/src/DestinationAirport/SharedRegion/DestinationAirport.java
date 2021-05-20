@@ -1,7 +1,7 @@
 package DestinationAirport.SharedRegion;
 
 import DestinationAirport.Main.MainProgram;
-import DestinationAirport.Stubs.*;
+import Stubs.GeneralRepos;
 import genclass.GenericIO;
 
 /**

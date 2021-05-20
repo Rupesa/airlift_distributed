@@ -1,6 +1,8 @@
 package Plane.SharedRegion;
 
-import Plane.Communication.*;
+import Communication.Message;
+import Communication.MessageType;
+import Communication.ServerCom;
 import Plane.Main.*;
 
 /**

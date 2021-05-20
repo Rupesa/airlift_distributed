@@ -1,6 +1,8 @@
 package GeneralRepos.SharedRegion;
 
-import GeneralRepos.Communication.*;
+import Communication.Message;
+import Communication.ServerCom;
+
 
 /**
  * Service Provider implementation.

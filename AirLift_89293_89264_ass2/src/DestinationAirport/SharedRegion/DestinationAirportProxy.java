@@ -1,6 +1,9 @@
 package DestinationAirport.SharedRegion;
 
-import DestinationAirport.Communication.*;
+import Communication.Message;
+import Communication.MessageType;
+import Communication.ServerCom;
+
 
 /**
  * DestinationAirport proxy for the logger shared region. Implements the

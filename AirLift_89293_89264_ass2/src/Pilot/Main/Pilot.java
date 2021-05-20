@@ -1,7 +1,8 @@
 package Pilot.Main;
 
-import Pilot.EntitiesState.*;
-import Pilot.Stubs.*;
+import EntitiesState.PilotState;
+import Stubs.DepartureAirport;
+import Stubs.Plane;
 import genclass.GenericIO;
 
 /**

@@ -1,6 +1,9 @@
 package DepartureAirport.SharedRegion;
 
-import DepartureAirport.Communication.*;
+import Communication.Message;
+import Communication.ServerCom;
+
+
 
 /**
  * This interface represents a shared region interface.

@@ -1,6 +1,8 @@
 package Plane.SharedRegion;
 
-import Plane.Communication.*;
+import Communication.Message;
+import Communication.ServerCom;
+
 
 /**
  * Service Provider implementation.

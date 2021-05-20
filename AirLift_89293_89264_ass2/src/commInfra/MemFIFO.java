@@ -1,5 +1,7 @@
 package commInfra;
 
+import genclass.GenericIO;
+
 /**
  *  Parametric FIFO derived from a parametric memory.
  *  Errors are reported.

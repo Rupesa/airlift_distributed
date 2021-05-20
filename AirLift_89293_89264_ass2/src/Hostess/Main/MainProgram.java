@@ -1,6 +1,7 @@
 package Hostess.Main;
 
-import Hostess.Stubs.*;
+import SimulationParameters.SimulationParameters;
+import Stubs.DepartureAirport;
 import genclass.GenericIO;
 
 /**
@@ -19,7 +20,7 @@ public class MainProgram {
         /**
          * Hostess lifecycle start.
          */
-        Hostess hostess = new Hostess("Hostess", departureAirport, SimulationParameters.N_PASSENGER); 
+        Hostess hostess = new Hostess("Hostess", departureAirport, SimulationParameters.TTL_PASSENGER); 
         hostess.start();
         try {
             hostess.join();

@@ -1,6 +1,8 @@
 package Pilot.Main;
 
-import Pilot.Stubs.*;
+import SimulationParameters.SimulationParameters;
+import Stubs.DepartureAirport;
+import Stubs.Plane;
 import genclass.GenericIO;
 
 /**

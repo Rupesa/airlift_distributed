@@ -1,7 +1,9 @@
 package GeneralRepos.Main;
 
-import GeneralRepos.Communication.*;
+
+import Communication.ServerCom;
 import GeneralRepos.SharedRegion.*;
+import SimulationParameters.SimulationParameters;
 import genclass.FileOp;
 import genclass.GenericIO;
 import java.net.SocketTimeoutException;

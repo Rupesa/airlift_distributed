@@ -1,7 +1,7 @@
 package Hostess.Main;
 
-import Hostess.EntitiesState.*;
-import Hostess.Stubs.*;
+import EntitiesState.HostessState;
+import Stubs.DepartureAirport;
 import genclass.GenericIO;
 
 /**
@@ -47,7 +47,7 @@ public class Hostess extends Thread {
     @Override
     public void run() {
         GenericIO.writelnString("Started Hostess activity");
-        while (maxNumberOfPassengers != numberOfAttendedPassengers) {
+        while (maxNumberOfPassengers > numberOfAttendedPassengers) {
             departureAirport.waitForNextFlight();
             departureAirport.waitForNextPassenger();
             departureAirport.checkDocuments();

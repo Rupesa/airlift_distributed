@@ -1,6 +1,8 @@
 package GeneralRepos.SharedRegion;
 
-import GeneralRepos.Communication.*;
+import Communication.Message;
+import Communication.ServerCom;
+
 
 /**
  * This interface represents a shared region interface

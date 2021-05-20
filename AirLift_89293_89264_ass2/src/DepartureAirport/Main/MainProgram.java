@@ -1,8 +1,10 @@
 package DepartureAirport.Main;
 
-import DepartureAirport.Communication.*;
+import Communication.ServerCom;
 import DepartureAirport.SharedRegion.*;
-import DepartureAirport.Stubs.*;
+import SimulationParameters.SimulationParameters;
+import static SimulationParameters.SimulationParameters.*;
+import Stubs.GeneralRepos;
 import java.net.SocketTimeoutException;
 
 /**
@@ -31,7 +33,7 @@ public class MainProgram {
         GeneralRepos logger = new GeneralRepos(SimulationParameters.REPOS_HOST_NAME, SimulationParameters.REPOS_PORT);
         
         /* Shared region and proxy initialization. */
-        DepartureAirport pd = new DepartureAirport(logger);
+        DepartureAirport pd = new DepartureAirport(MIN_PASSENGER,MAX_PASSENGER, TTL_PASSENGER, logger);
         DepartureAirportProxy pdInt = new DepartureAirportProxy(pd);
         
         /**

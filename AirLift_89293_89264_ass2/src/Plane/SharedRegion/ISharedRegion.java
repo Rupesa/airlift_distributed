@@ -1,6 +1,8 @@
 package Plane.SharedRegion;
 
-import Plane.Communication.*;
+import Communication.Message;
+import Communication.ServerCom;
+
 
 /**
  * This interface represents a shared region interface.

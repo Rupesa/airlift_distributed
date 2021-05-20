@@ -1,8 +1,10 @@
 package DepartureAirport.SharedRegion;
 
-import DepartureAirport.EntitiesState.*;
 import DepartureAirport.Main.*;
-import DepartureAirport.Stubs.*;
+import EntitiesState.HostessState;
+import EntitiesState.PassengerState;
+import EntitiesState.PilotState;
+import Stubs.GeneralRepos;
 import commInfra.MemException;
 import commInfra.MemFIFO;
 import genclass.GenericIO;
@@ -79,9 +81,10 @@ public class DepartureAirport {
      */
     public synchronized void waitForNextFlight() {
         /* change state of hostess to WTFL */
-//        if (HostessState.toString() == HostessState.READY_TO_FLY.toString()) {
+//        if (HostessState.toString() == "RDTF") {
 //            repos.updateHostessState(HostessState.WAIT_FOR_FLIGHT, currentPassenger);
 //        }
+    
 
         /* wait for the pilot to notify that he is ready to board */
         while (!pilotInformPlaneReadyForBoarding) {
@@ -102,6 +105,7 @@ public class DepartureAirport {
     public synchronized void waitForNextPassenger() {
         /* waiting for passengers */
         notifyAll();
+       
         while (passengers.empty()) {
             GenericIO.writelnString("(02) Hostess is waiting for passengers");
 
@@ -121,6 +125,7 @@ public class DepartureAirport {
         }
         notifyAll();
         GenericIO.writelnString("(03) Hostess accepted a passenger for check in");
+//        GenericIO.writelnString("(03) Hostess accepted a passenger " + currentPassenger + " for check in");
     }
 
     /**
@@ -134,12 +139,14 @@ public class DepartureAirport {
 
         /* ask for documents from the passenger */
         GenericIO.writelnString("(04) Hostess asked passenger for documents");
+//        GenericIO.writelnString("(04) Hostess asked passenger " + currentPassenger + " for documents");
         hostessAsksPassengerForDocuments = true;
         notifyAll();
 
         /* wait for the passenger to show the documents */
         while (!passengerShowingDocuments) {
             GenericIO.writelnString("(05) Hostess is waiting for passenger to give documents");
+//            GenericIO.writelnString("(05) Hostess is waiting for passenger " + currentPassenger + " to give documents");
             try {
                 wait();
             } catch (InterruptedException e) {
@@ -149,6 +156,7 @@ public class DepartureAirport {
 
         passengerShowingDocuments = false;
         GenericIO.writelnString("(06) Hostess received and accepted documents");
+//        GenericIO.writelnString("(06) Hostess received and accepted documents (passenger " + currentPassenger + ")");
         numberOfPassengerOnThePlane++;
 
         /* change state of hostess to WTPS */

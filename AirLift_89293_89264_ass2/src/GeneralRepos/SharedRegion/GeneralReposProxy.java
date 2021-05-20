@@ -1,6 +1,9 @@
 package GeneralRepos.SharedRegion;
 
-import GeneralRepos.Communication.*;
+import Communication.Message;
+import Communication.MessageType;
+import Communication.ServerCom;
+
 
 /**
  * Proxy for the general repository shared region. Implements the ISharedRegion
@@ -46,6 +49,11 @@ public class GeneralReposProxy implements ISharedRegion {
             }
             case UPDATE_PASSENGER_STATE: {
                 repos.updatePassengerState(inMessage.getPassengerState(), inMessage.getIdPassenger());
+                outMessage = new Message(MessageType.STATUS_OK);
+                break;
+            }
+            case REPORT_FINAL_RESULTS: {
+                repos.reportFinalStatus();
                 outMessage = new Message(MessageType.STATUS_OK);
                 break;
             }

@@ -1,8 +1,9 @@
 package DestinationAirport.Main;
 
-import DestinationAirport.Communication.*;
+import Communication.ServerCom;
 import DestinationAirport.SharedRegion.*;
-import DestinationAirport.Stubs.*;
+import SimulationParameters.SimulationParameters;
+import Stubs.GeneralRepos;
 import java.net.SocketTimeoutException;
 
 /**

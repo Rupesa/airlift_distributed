@@ -1,7 +1,9 @@
 package Passenger.Main;
 
-import Passenger.EntitiesState.*;
-import Passenger.Stubs.*;
+import EntitiesState.PassengerState;
+import Stubs.DepartureAirport;
+import Stubs.DestinationAirport;
+import Stubs.Plane;
 import genclass.GenericIO;
 
 /**

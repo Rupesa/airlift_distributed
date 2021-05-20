@@ -1,8 +1,10 @@
 package Plane.Main;
 
-import Plane.Communication.*;
+import Communication.ServerCom;
 import Plane.SharedRegion.*;
-import Plane.Stubs.*;
+import SimulationParameters.SimulationParameters;
+import static SimulationParameters.SimulationParameters.TTL_PASSENGER;
+import Stubs.GeneralRepos;
 import java.net.SocketTimeoutException;
 
 /**
@@ -39,7 +41,7 @@ public class MainProgram {
         /**
          * Shared region and proxy initialization.
          */
-        Plane pd = new Plane(repos);
+        Plane pd = new Plane(TTL_PASSENGER, repos);
         PlaneProxy pdInt = new PlaneProxy(pd);
         
         /**

@@ -1,6 +1,7 @@
 package DepartureAirport.SharedRegion;
 
-import DepartureAirport.Communication.*;
+import Communication.Message;
+import Communication.ServerCom;
 
 /**
  * Service Provider implementation. Processes and replies messages accordingly

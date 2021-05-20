@@ -1,8 +1,9 @@
 package Plane.SharedRegion;
 
-import Plane.EntitiesState.*;
+import EntitiesState.PassengerState;
+import EntitiesState.PilotState;
 import Plane.Main.MainProgram;
-import Plane.Stubs.*;
+import Stubs.GeneralRepos;
 import commInfra.MemException;
 import commInfra.MemFIFO;
 import genclass.GenericIO;

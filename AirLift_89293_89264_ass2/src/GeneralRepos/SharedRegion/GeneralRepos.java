@@ -1,7 +1,10 @@
 package GeneralRepos.SharedRegion;
 
-import GeneralRepos.EntitiesState.*;
+import EntitiesState.HostessState;
+import EntitiesState.PassengerState;
+import EntitiesState.PilotState;
 import GeneralRepos.Main.*;
+import SimulationParameters.SimulationParameters;
 import genclass.GenericIO;
 import genclass.TextFile;
 import java.util.Objects;
@@ -139,6 +142,7 @@ public class GeneralRepos {
      * @param state passenger state
      */
     public synchronized void updatePassengerState(PassengerState state, int id) {
+        System.out.println("------------------- UPDATE PASSENGER "+id+" STATE ");
         passengerState[id] = state;
         reportStatus();
     }
@@ -186,11 +190,11 @@ public class GeneralRepos {
         /* check pilot state */
         if (pilotState == PilotState.AT_TRANSFER_GATE) {
             lineStatus += " ATGR ";
-        } else if (pilotState == PilotState.READY_FOR_FOARDING) {
+        } else if (pilotState == PilotState.READY_FOR_BOARDING) {
             /* check and print flight status : BOARDING STARTED */
             lineStatus += " RDFB ";
             log.writelnString("\n Flight " + flight + ": boarding started.");
-            lastPilotReportedState = PilotState.READY_FOR_FOARDING;
+            lastPilotReportedState = PilotState.READY_FOR_BOARDING;
         } else if (pilotState == PilotState.WAITING_FOR_BOARDING) {
             lineStatus += " WTFB ";
             lastPilotReportedState = PilotState.WAITING_FOR_BOARDING;
