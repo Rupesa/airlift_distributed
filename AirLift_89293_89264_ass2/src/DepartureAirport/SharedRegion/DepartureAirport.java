@@ -211,7 +211,6 @@ public class DepartureAirport {
         } catch (MemException ex) {
             Logger.getLogger(DepartureAirport.class.getName()).log(Level.SEVERE, null, ex);
         }
-        notifyAll();
         GenericIO.writelnString("(09) Passenger " + id + " go to airport");
     }
 
@@ -222,6 +221,8 @@ public class DepartureAirport {
     public synchronized void waitInQueue(int id) {
         /* change state of passenger to INQE */
         repos.updatePassengerState(PassengerState.IN_QUEUE, id);
+        
+        notifyAll();
         
         /* wait in line until the hostess starts checking in */
         GenericIO.writelnString("(10) Passenger " + id + " is waiting in queue");
@@ -312,6 +313,9 @@ public class DepartureAirport {
      * @return the value of the hostessInformPilotToEndActivity variable
      */
     public synchronized boolean informPilotToEndActivity() {
+        if (hostessInformPilotToEndActivity) {
+            repos.reportFinalStatus();
+        }
         return hostessInformPilotToEndActivity;
     }
 

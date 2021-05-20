@@ -20,8 +20,6 @@ public class MainProgram {
         DepartureAirport departureAirport = new DepartureAirport(SimulationParameters.DEPARTURE_AIRPORT_HOST_NAME, SimulationParameters.DEPARTURE_AIRPORT_PORT);
         DestinationAirport destinationAirport = new DestinationAirport(SimulationParameters.DESTINATION_AIRPORT_HOST_NAME, SimulationParameters.DESTINATION_AIRPORT_PORT);
         Plane plane = new Plane(SimulationParameters.PLANE_HOST_NAME, SimulationParameters.PLANE_PORT);
-
-        GeneralRepos repos = new GeneralRepos(SimulationParameters.REPOS_HOST_NAME, SimulationParameters.REPOS_PORT);
         
         /**
          * Passenger lifecycle start.
@@ -45,9 +43,6 @@ public class MainProgram {
             }
             
             GenericIO.writelnString ("The passenger " + (i+1) + " has terminated.");
-            if (i == 20) {
-                repos.reportFinalStatus();
-            }
         }
     }
 }

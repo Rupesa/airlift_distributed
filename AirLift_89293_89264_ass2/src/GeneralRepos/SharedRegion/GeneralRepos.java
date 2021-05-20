@@ -230,7 +230,7 @@ public class GeneralRepos {
             lastHostessReportedState = HostessState.WAIT_FOR_PASSENGER;
         } else if (hostessState == HostessState.CHECK_PASSENGER) {
             /* check and print flight status : PASSENGER _ CHECKED */
-            if (lastHostessReportedState == HostessState.WAIT_FOR_PASSENGER) {
+            if ((lastHostessReportedState == HostessState.WAIT_FOR_PASSENGER) || (lastHostessReportedState == HostessState.WAIT_FOR_FLIGHT)) {
                 log.writelnString("\n Flight " + flight + ": passenger " + currentPassenger + " checked.");
                 inQ--;
             }
