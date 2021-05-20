@@ -35,6 +35,7 @@ public class DepartureAirport {
     private boolean hostessInformPlaneReadyToTakeOff;
     private static boolean hostessInformPilotToEndActivity;
     private boolean pilotInformPlaneReadyForBoarding;
+    private String hostessState;
 
     /**
      * Departure Airport instantiation.
@@ -63,6 +64,7 @@ public class DepartureAirport {
         hostessInformPilotToEndActivity = false;
         pilotInformPlaneReadyForBoarding = false;
         this.repos = repos;
+        hostessState = HostessState.WAIT_FOR_FLIGHT.toString();
     }
 
     /**
@@ -81,10 +83,10 @@ public class DepartureAirport {
      */
     public synchronized void waitForNextFlight() {
         /* change state of hostess to WTFL */
-//        if (HostessState.toString() == "RDTF") {
-//            repos.updateHostessState(HostessState.WAIT_FOR_FLIGHT, currentPassenger);
-//        }
-    
+        if (hostessState == "RDTF") {
+            repos.updateHostessState(HostessState.WAIT_FOR_FLIGHT, currentPassenger);
+            hostessState = "WTFL";
+        }
 
         /* wait for the pilot to notify that he is ready to board */
         while (!pilotInformPlaneReadyForBoarding) {
@@ -105,12 +107,13 @@ public class DepartureAirport {
     public synchronized void waitForNextPassenger() {
         /* waiting for passengers */
         notifyAll();
-       
+
         while (passengers.empty()) {
             GenericIO.writelnString("(02) Hostess is waiting for passengers");
 
             /* change state of hostess to WTPS */
             repos.updateHostessState(HostessState.WAIT_FOR_PASSENGER, currentPassenger);
+            hostessState = "WTPS";
 
             try {
                 wait();
@@ -125,7 +128,6 @@ public class DepartureAirport {
         }
         notifyAll();
         GenericIO.writelnString("(03) Hostess accepted a passenger for check in");
-//        GenericIO.writelnString("(03) Hostess accepted a passenger " + currentPassenger + " for check in");
     }
 
     /**
@@ -136,10 +138,10 @@ public class DepartureAirport {
     public synchronized void checkDocuments() {
         /* change state of hostess to CKPS */
         repos.updateHostessState(HostessState.CHECK_PASSENGER, currentPassenger);
-
+        hostessState = "CKPS";
+        
         /* ask for documents from the passenger */
         GenericIO.writelnString("(04) Hostess asked passenger for documents");
-//        GenericIO.writelnString("(04) Hostess asked passenger " + currentPassenger + " for documents");
         hostessAsksPassengerForDocuments = true;
         notifyAll();
 
@@ -156,7 +158,6 @@ public class DepartureAirport {
 
         passengerShowingDocuments = false;
         GenericIO.writelnString("(06) Hostess received and accepted documents");
-//        GenericIO.writelnString("(06) Hostess received and accepted documents (passenger " + currentPassenger + ")");
         numberOfPassengerOnThePlane++;
 
         /* change state of hostess to WTPS */
@@ -184,7 +185,8 @@ public class DepartureAirport {
 
             /* change state of hostess to RDTF */
             repos.updateHostessState(HostessState.READY_TO_FLY, currentPassenger);
-
+            hostessState = "RDTF";
+            
             /* wait for the pilot to report that he is ready to board */
             while (pilotInformPlaneReadyForBoarding) {
                 try {
@@ -220,7 +222,8 @@ public class DepartureAirport {
     public synchronized void waitInQueue(int id) {
         /* change state of passenger to INQE */
         repos.updatePassengerState(PassengerState.IN_QUEUE, id);
-
+        System.out.println("Pass1 > " + PassengerState.IN_QUEUE);
+        
         /* wait in line until the hostess starts checking in */
         GenericIO.writelnString("(10) Passenger " + id + " is waiting in queue");
         while (passengers.contains(id)) {

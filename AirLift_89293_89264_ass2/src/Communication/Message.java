@@ -81,7 +81,6 @@ public class Message implements Serializable {
      * @param bool boolean argument
      */
     public Message(MessageType type, boolean bool) {
-        this();
         this.type = type;
         switch (type) {
             case RETURN_HOSTESS_INFORMS_PILOT_TO_END_ACTIVITY:
@@ -110,9 +109,8 @@ public class Message implements Serializable {
      * @param id if of passenger
      */
     public Message(MessageType type, HostessState state, int id) {
-        this();
         this.type = type;
-        this.hostessState = hostessState;
+        this.hostessState = state;
         this.idPassenger = id;
     }
 
@@ -123,9 +121,8 @@ public class Message implements Serializable {
      * @param state state of pilot argument
      */
     public Message(MessageType type, PilotState state) {
-        this();
         this.type = type;
-        this.pilotState = pilotState;
+        this.pilotState = state;
     }
 
     /**
@@ -136,9 +133,8 @@ public class Message implements Serializable {
      * @param id id of passenger
      */
     public Message(MessageType type, PassengerState state, int id) {
-        this();
         this.type = type;
-        this.pilotState = pilotState;
+        this.passengerState = state;
         this.idPassenger = id;
     }
 
@@ -150,10 +146,9 @@ public class Message implements Serializable {
      * @param passengers number of passengers per flight
      */
     public Message(MessageType type, int flight, int passengers) {
-        this();
         this.type = type;
-        this.numOfFlight = numOfFlight;
-        this.numPassengersPerFlight = numPassengersPerFlight;
+        this.numOfFlight = flight;
+        this.numPassengersPerFlight = passengers;
     }
 
     /**

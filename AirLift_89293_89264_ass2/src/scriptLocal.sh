@@ -1,25 +1,11 @@
 bold=$(tput bold)
 normal=$(tput sgr0)
 sudo kill -9 $(ps -ef | grep java | grep -v "netbeans" | awk '{ print $2 }')
-echo "${bold}*** Script Local ***${normal}"
+echo "${bold}------------------------ AirLift Problem  Script Local ------------------------${normal}"
 
-###
+### COMPILAR
 
-echo -e "\n${bold}* Copiar parâmetros de simulação *${normal}"
-# cp SimulationParameters/local_SimulationParameters.java BettingCenter/src/main/java/MainPackage/SimulationParameters.java
-# cp SimulationParameters/local_SimulationParameters.java Broker/src/main/java/MainPackage/SimulationParameters.java
-# cp SimulationParameters/local_SimulationParameters.java ControlCenter/src/main/java/MainPackage/SimulationParameters.java
-# cp SimulationParameters/local_SimulationParameters.java Horses/src/main/java/MainPackage/SimulationParameters.java
-# cp SimulationParameters/local_SimulationParameters.java Logger/src/main/java/MainPackage/SimulationParameters.java
-# cp SimulationParameters/local_SimulationParameters.java Paddock/src/main/java/MainPackage/SimulationParameters.java
-# cp SimulationParameters/local_SimulationParameters.java RacingTrack/src/main/java/MainPackage/SimulationParameters.java
-# cp SimulationParameters/local_SimulationParameters.java Spectators/src/main/java/MainPackage/SimulationParameters.java
-# cp SimulationParameters/local_SimulationParameters.java Stable/src/main/java/MainPackage/SimulationParameters.java
-
-
-###
-
-echo -e "\n${bold}* Compilação do código em cada nó *${normal}"
+echo -e "\n${bold}---------- Compilação do código em cada nó ----------${normal}"
 
 echo -e "\n${bold}->${normal} A compilar EntitiesState"
 cd EntitiesState/
@@ -80,9 +66,8 @@ javac -classpath ../genclass.jar:.. ../commInfra/*.java $(find . -name '*.java')
 cd ..
 
 
-###
-
-echo -e "\n${bold}* Execução do código em cada nó *${normal}"
+### EXECUTAR 
+echo -e "\n${bold}----------- Execução do código em cada nó -----------${normal}"
 
 echo -e "\n${bold}->${normal} A executar GeneralRepos"
 # cd GeneralRepos/Main/

@@ -142,7 +142,6 @@ public class GeneralRepos {
      * @param state passenger state
      */
     public synchronized void updatePassengerState(PassengerState state, int id) {
-        System.out.println("------------------- UPDATE PASSENGER "+id+" STATE ");
         passengerState[id] = state;
         reportStatus();
     }
@@ -216,6 +215,11 @@ public class GeneralRepos {
             }
             lineStatus += " FLBK ";
             lastPilotReportedState = PilotState.FLYING_BACK;
+        } else {
+            System.out.println("------------------------------------------------------------------------------");
+            System.out.println("PILOT STATE : " + pilotState);
+            System.out.println("------------------------------------------------------------------------------");
+
         }
 
         /* check hostess state */
@@ -240,6 +244,12 @@ public class GeneralRepos {
             }
             lineStatus += " RDTF ";
             lastHostessReportedState = HostessState.READY_TO_FLY;
+        }
+        else {
+            System.out.println("------------------------------------------------------------------------------");
+            System.out.println("HOSTESS STATE : " + hostessState);
+            System.out.println("------------------------------------------------------------------------------");
+
         }
 
         /* check passenger state */
@@ -266,6 +276,11 @@ public class GeneralRepos {
                 }
                 lineStatus += " ATDS ";
                 lastPassengerReportedState[i] = PassengerState.AT_DESTINATION;
+            }else {
+                System.out.println("------------------------------------------------------------------------------");
+                System.out.println("PASSENGER STATE : " + passengerState);
+                System.out.println("------------------------------------------------------------------------------");
+
             }
         }
 

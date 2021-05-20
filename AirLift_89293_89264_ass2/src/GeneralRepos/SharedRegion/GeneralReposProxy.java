@@ -48,6 +48,7 @@ public class GeneralReposProxy implements ISharedRegion {
                 break;
             }
             case UPDATE_PASSENGER_STATE: {
+                System.out.println("PASS23 > " + inMessage.getPassengerState());
                 repos.updatePassengerState(inMessage.getPassengerState(), inMessage.getIdPassenger());
                 outMessage = new Message(MessageType.STATUS_OK);
                 break;

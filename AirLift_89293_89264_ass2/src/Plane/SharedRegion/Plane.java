@@ -59,7 +59,8 @@ public class Plane {
     public synchronized void boardThePlane(int id) {
         /* change state of passenger to INFL */
         repos.updatePassengerState(PassengerState.IN_FLIGHT, id);
-
+        System.out.println("Pass2 > " + PassengerState.IN_FLIGHT);
+        
         /* add passenger to the queue of passengers */
         try {
             passengers.write(id);
@@ -96,6 +97,8 @@ public class Plane {
 
         /* change state of passanger to ATDS */
         repos.updatePassengerState(PassengerState.AT_DESTINATION, id);
+        System.out.println("Pass3 > " + PassengerState.AT_DESTINATION);
+        
         /* the last passenger notifies the pilot that he is the last */
         if (passengers.empty()) {
             lastPassengerLeaveThePlane = true;
