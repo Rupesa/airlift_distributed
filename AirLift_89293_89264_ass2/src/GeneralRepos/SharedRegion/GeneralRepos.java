@@ -29,7 +29,7 @@ public class GeneralRepos {
     private int flight;
     private int currentPassenger;
     private String[] voos;
-
+    
     /**
      * State of the pilot.
      */
@@ -188,11 +188,15 @@ public class GeneralRepos {
 
         /* check pilot state */
         if (pilotState == PilotState.AT_TRANSFER_GATE) {
-            lineStatus += " ATGR ";
+                lineStatus += " ATGR ";
+            lastPilotReportedState = PilotState.AT_TRANSFER_GATE;
         } else if (pilotState == PilotState.READY_FOR_BOARDING) {
             /* check and print flight status : BOARDING STARTED */
+            if (lastPilotReportedState == PilotState.AT_TRANSFER_GATE) {
+                log.writelnString("\n Flight " + flight + ": boarding started.");
+            }
             lineStatus += " RDFB ";
-            log.writelnString("\n Flight " + flight + ": boarding started.");
+//            log.writelnString("\n Flight " + flight + ": boarding started.");
             lastPilotReportedState = PilotState.READY_FOR_BOARDING;
         } else if (pilotState == PilotState.WAITING_FOR_BOARDING) {
             lineStatus += " WTFB ";
@@ -215,11 +219,6 @@ public class GeneralRepos {
             }
             lineStatus += " FLBK ";
             lastPilotReportedState = PilotState.FLYING_BACK;
-        } else {
-            System.out.println("------------------------------------------------------------------------------");
-            System.out.println("PILOT STATE : " + pilotState);
-            System.out.println("------------------------------------------------------------------------------");
-
         }
 
         /* check hostess state */
@@ -244,12 +243,6 @@ public class GeneralRepos {
             }
             lineStatus += " RDTF ";
             lastHostessReportedState = HostessState.READY_TO_FLY;
-        }
-        else {
-            System.out.println("------------------------------------------------------------------------------");
-            System.out.println("HOSTESS STATE : " + hostessState);
-            System.out.println("------------------------------------------------------------------------------");
-
         }
 
         /* check passenger state */
@@ -276,11 +269,6 @@ public class GeneralRepos {
                 }
                 lineStatus += " ATDS ";
                 lastPassengerReportedState[i] = PassengerState.AT_DESTINATION;
-            }else {
-                System.out.println("------------------------------------------------------------------------------");
-                System.out.println("PASSENGER STATE : " + passengerState);
-                System.out.println("------------------------------------------------------------------------------");
-
             }
         }
 
@@ -320,12 +308,13 @@ public class GeneralRepos {
             GenericIO.writelnString("The operation of closing the file " + logFileName + " failed!");
             System.exit(1);
         }
+        MainProgram.serviceEnd = true;
     }
 
     /**
      * Terminates the logger service.
      */
-    public synchronized void serviceEnd() {
-        MainProgram.serviceEnd = true;
-    }
+//    public synchronized void serviceEnd() {
+//        MainProgram.serviceEnd = true;
+//    }
 }

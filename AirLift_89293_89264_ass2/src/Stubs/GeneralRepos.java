@@ -33,24 +33,6 @@ public class GeneralRepos {
         serverPortNumb = port;
     }
             
-//    /**
-//     * Updates the state of the hostess
-//     * @param state new hostess state
-//     */
-//    public void updateHostessState(HostessState state){
-//        ClientCom com = new ClientCom (serverHostName, serverPortNumb);
-//        while(!com.open()){
-//            try {
-//                Thread.currentThread ().sleep ((long) (10));
-//            } catch (InterruptedException ex) {
-//            }
-//        }
-//        Message msg = new Message(MessageType.UPDATE_HOSTESS_STATE, state);
-//        com.writeObject(msg);
-//        Message inMessage = (Message) com.readObject();
-//        com.close ();
-//    }
-    
     /**
      * Updates the state of the hostess
      */
@@ -133,7 +115,7 @@ public class GeneralRepos {
             } catch (InterruptedException ex) {
             }
         }
-        Message msg = new Message(MessageType.UPDATE_PASSENGER_STATE, numberOfFilght, numberOfPassengerOnThePlane);
+        Message msg = new Message(MessageType.UPDATE_INFO_FLIGHT_STATE, numberOfFilght, numberOfPassengerOnThePlane);
         com.writeObject(msg);
         Message inMessage = (Message) com.readObject();
         com.close ();

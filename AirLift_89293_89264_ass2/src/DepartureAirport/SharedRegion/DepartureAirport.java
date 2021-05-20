@@ -148,7 +148,6 @@ public class DepartureAirport {
         /* wait for the passenger to show the documents */
         while (!passengerShowingDocuments) {
             GenericIO.writelnString("(05) Hostess is waiting for passenger to give documents");
-//            GenericIO.writelnString("(05) Hostess is waiting for passenger " + currentPassenger + " to give documents");
             try {
                 wait();
             } catch (InterruptedException e) {
@@ -159,6 +158,7 @@ public class DepartureAirport {
         passengerShowingDocuments = false;
         GenericIO.writelnString("(06) Hostess received and accepted documents");
         numberOfPassengerOnThePlane++;
+        numberOfAttendedPassengers++;
 
         /* change state of hostess to WTPS */
         repos.updateHostessState(HostessState.WAIT_FOR_PASSENGER, currentPassenger);
@@ -222,7 +222,6 @@ public class DepartureAirport {
     public synchronized void waitInQueue(int id) {
         /* change state of passenger to INQE */
         repos.updatePassengerState(PassengerState.IN_QUEUE, id);
-        System.out.println("Pass1 > " + PassengerState.IN_QUEUE);
         
         /* wait in line until the hostess starts checking in */
         GenericIO.writelnString("(10) Passenger " + id + " is waiting in queue");

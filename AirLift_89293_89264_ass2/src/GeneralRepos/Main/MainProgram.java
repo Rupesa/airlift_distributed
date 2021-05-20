@@ -34,9 +34,6 @@ public class MainProgram {
 
         ServerCom sconi;
         ServiceProvider sp;
-        
-        /* problem initialization */
-        // GenericIO.writelnString ("\n" + "      Problem of the Air Lift\n");
 
         /**
          * Shared region and proxy initialization.
@@ -58,12 +55,9 @@ public class MainProgram {
          */
         while (!serviceEnd) {
 //            try {
-                //GenericIO.writelnString ("Passou 1\n");
                 sconi = scon.accept();
-                //GenericIO.writelnString ("Passou 1.5\n");
                 sp = new ServiceProvider(sconi, loggerInt);
                 sp.start();
-                //GenericIO.writelnString ("Passou 2\n");
 //            } catch (SocketTimeoutException ex) {
 //            }
         }

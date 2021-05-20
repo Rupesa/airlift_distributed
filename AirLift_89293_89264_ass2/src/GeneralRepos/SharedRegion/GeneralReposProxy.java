@@ -48,8 +48,12 @@ public class GeneralReposProxy implements ISharedRegion {
                 break;
             }
             case UPDATE_PASSENGER_STATE: {
-                System.out.println("PASS23 > " + inMessage.getPassengerState());
                 repos.updatePassengerState(inMessage.getPassengerState(), inMessage.getIdPassenger());
+                outMessage = new Message(MessageType.STATUS_OK);
+                break;
+            }
+            case UPDATE_INFO_FLIGHT_STATE: {
+                repos.updateInfoBoardPlane(inMessage.getNumOfFlight(), inMessage.getNumPassengersPerFlight());
                 outMessage = new Message(MessageType.STATUS_OK);
                 break;
             }
@@ -58,11 +62,11 @@ public class GeneralReposProxy implements ISharedRegion {
                 outMessage = new Message(MessageType.STATUS_OK);
                 break;
             }
-            case SERVICE_END: {
-                repos.serviceEnd();
-                outMessage = new Message(MessageType.STATUS_OK);
-                break;
-            }
+//            case SERVICE_END: {
+//                repos.serviceEnd();
+//                outMessage = new Message(MessageType.STATUS_OK);
+//                break;
+//            }
         }
         return outMessage;
     }
