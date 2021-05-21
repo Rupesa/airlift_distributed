@@ -50,7 +50,6 @@ public class Message implements Serializable {
      * Constructor of Message.
      */
     public Message() {
-//        this.idPassenger = -1;
         this.informPilotToEndActivity = false;
     }
 
@@ -88,18 +87,6 @@ public class Message implements Serializable {
                 break;
         }
     }
-
-//    /**
-//     * Constructor with the type of the message and a state of Hostess.
-//     *
-//     * @param type type of the message
-//     * @param state state of hostess argument
-//     */
-//    public Message(MessageType type, HostessState state) {
-//        this();
-//        this.type = type;
-//        this.hostessState = hostessState;
-//    }
 
     /**
      * Constructor with the type of the message and a state of Hostess.

@@ -4,8 +4,6 @@ import Communication.Message;
 import Communication.MessageType;
 import Communication.ServerCom;
 
-
-
 /**
  * DepartureAiport proxy for the logger shared region. Implements the
  * ISharedRegion interface, and listens to the requests, processes them and
@@ -83,14 +81,16 @@ public class DepartureAirportProxy implements ISharedRegion {
                 departureAirport.waitForAllInBoard();
                 outMessage = new Message(MessageType.STATUS_OK);
                 break;
-            }           
+            }
             case INFORM_PILOT_TO_END_ACTIVITY: {
                 boolean value = departureAirport.informPilotToEndActivity();
                 outMessage = new Message(MessageType.RETURN_HOSTESS_INFORMS_PILOT_TO_END_ACTIVITY, value);
                 break;
             }
             case SERVICE_END: {
+                System.out.println("Depart serviceEnd Proxy1");
                 departureAirport.serviceEnd();
+                System.out.println("Depart serviceEnd Proxy2");
                 outMessage = new Message(MessageType.STATUS_OK);
                 break;
             }

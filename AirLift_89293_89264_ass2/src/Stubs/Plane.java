@@ -4,7 +4,6 @@ import Communication.ClientCom;
 import Communication.Message;
 import Communication.MessageType;
 
-
 /**
  * Plane stub. Class used to communicate with the departure airport using TCP
  * communication channels.
@@ -153,7 +152,7 @@ public class Plane {
     /**
      * The pilot parks the plane at the transfer gate.
      */
-    public synchronized void parkAtTransferGate() {
+    public void parkAtTransferGate() {
         ClientCom com = new ClientCom(serverHostName, serverPortNumb);
 
         while (!com.open()) {
@@ -164,6 +163,25 @@ public class Plane {
         }
 
         Message msg = new Message(MessageType.PARK_AT_TRANSFER_GATE);
+        com.writeObject(msg);
+        Message inMessage = (Message) com.readObject();
+        com.close();
+    }
+
+    /**
+     * Message sent to end the activity.
+     */
+    public void serviceEnd() {
+        ClientCom com = new ClientCom(serverHostName, serverPortNumb);
+
+        while (!com.open()) {
+            try {
+                Thread.currentThread().sleep((long) (10));
+            } catch (InterruptedException ex) {
+            }
+        }
+        System.out.println("Plane serviceEnd Stub");
+        Message msg = new Message(MessageType.SERVICE_END);
         com.writeObject(msg);
         Message inMessage = (Message) com.readObject();
         com.close();

@@ -29,7 +29,7 @@ public class GeneralRepos {
     private int flight;
     private int currentPassenger;
     private String[] voos;
-    
+
     /**
      * State of the pilot.
      */
@@ -188,7 +188,7 @@ public class GeneralRepos {
 
         /* check pilot state */
         if (pilotState == PilotState.AT_TRANSFER_GATE) {
-                lineStatus += " ATGR ";
+            lineStatus += " ATGR ";
             lastPilotReportedState = PilotState.AT_TRANSFER_GATE;
         } else if (pilotState == PilotState.READY_FOR_BOARDING) {
             /* check and print flight status : BOARDING STARTED */
@@ -196,7 +196,6 @@ public class GeneralRepos {
                 log.writelnString("\n Flight " + flight + ": boarding started.");
             }
             lineStatus += " RDFB ";
-//            log.writelnString("\n Flight " + flight + ": boarding started.");
             lastPilotReportedState = PilotState.READY_FOR_BOARDING;
         } else if (pilotState == PilotState.WAITING_FOR_BOARDING) {
             lineStatus += " WTFB ";
@@ -314,7 +313,7 @@ public class GeneralRepos {
     /**
      * Terminates the logger service.
      */
-//    public synchronized void serviceEnd() {
-//        MainProgram.serviceEnd = true;
-//    }
+    public synchronized void serviceEnd() {
+        MainProgram.serviceEnd = true;
+    }
 }

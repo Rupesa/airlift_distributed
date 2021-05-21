@@ -6,25 +6,25 @@ import Communication.ServerCom;
 import Plane.Main.*;
 
 /**
- * Plane proxy for the logger shared region.
- * Implements the ISharedRegion interface, and listens to the requests,
- * processes them and replies.
+ * Plane proxy for the logger shared region. Implements the ISharedRegion
+ * interface, and listens to the requests, processes them and replies.
  */
 public class PlaneProxy implements ISharedRegion {
-    
+
     /**
      * Plane used to process the messages.
      */
     private final Plane plane;
-    
+
     /**
      * Plane Proxy constructor.
+     *
      * @param plane to process the messages
      */
-    public PlaneProxy(Plane plane){
+    public PlaneProxy(Plane plane) {
         this.plane = plane;
     }
-           
+
     /**
      * Process and reply a message.
      *
@@ -73,7 +73,9 @@ public class PlaneProxy implements ISharedRegion {
                 break;
             }
             case SERVICE_END: {
+                System.out.println("Plane serviceEnd Proxy1");
                 plane.serviceEnd();
+                System.out.println("Plane serviceEnd Proxy2");
                 outMessage = new Message(MessageType.STATUS_OK);
                 break;
             }

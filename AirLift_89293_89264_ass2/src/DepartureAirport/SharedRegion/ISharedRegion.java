@@ -3,8 +3,6 @@ package DepartureAirport.SharedRegion;
 import Communication.Message;
 import Communication.ServerCom;
 
-
-
 /**
  * This interface represents a shared region interface.
  */

@@ -4,7 +4,6 @@ import Communication.Message;
 import Communication.MessageType;
 import Communication.ServerCom;
 
-
 /**
  * DestinationAirport proxy for the logger shared region. Implements the
  * ISharedRegion interface, and listens to the requests, processes them and

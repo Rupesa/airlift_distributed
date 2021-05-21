@@ -1,12 +1,8 @@
 package GeneralRepos.Main;
 
-
 import Communication.ServerCom;
 import GeneralRepos.SharedRegion.*;
 import SimulationParameters.SimulationParameters;
-import genclass.FileOp;
-import genclass.GenericIO;
-import java.net.SocketTimeoutException;
 
 /**
  * Main passenger program. Initializes the service provider and waits for a
@@ -25,13 +21,11 @@ public class MainProgram {
      * @param args args
      */
     public static void main(String args[]) {
-        
 
         /**
          * Communication channels.
          */
         ServerCom scon;
-
         ServerCom sconi;
         ServiceProvider sp;
 
@@ -39,13 +33,11 @@ public class MainProgram {
          * Shared region and proxy initialization.
          */
         GeneralRepos repos = new GeneralRepos("rep.txt");
-
         GeneralReposProxy loggerInt = new GeneralReposProxy(repos);
 
         /**
          * Start listening on the communication channel.
          */
-        // GenericIO.writelnString (""+SimulationParameters.REPOS_PORT);
         scon = new ServerCom(SimulationParameters.REPOS_PORT);
         scon.start();
 
@@ -54,12 +46,9 @@ public class MainProgram {
          * to the service provider.
          */
         while (!serviceEnd) {
-//            try {
-                sconi = scon.accept();
-                sp = new ServiceProvider(sconi, loggerInt);
-                sp.start();
-//            } catch (SocketTimeoutException ex) {
-//            }
+            sconi = scon.accept();
+            sp = new ServiceProvider(sconi, loggerInt);
+            sp.start();
         }
     }
 }

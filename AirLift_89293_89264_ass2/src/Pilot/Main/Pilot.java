@@ -42,14 +42,14 @@ public class Pilot extends Thread {
     @Override
     public void run() {
         GenericIO.writelnString("Started Pilot activity");
-       while(!departureAirport.informPilotToEndActivity()){
-           departureAirport.informPlaneReadyForBoarding();
-           departureAirport.waitForAllInBoard();      
-           plane.flyToDestinationPoint();
-           plane.announceArrival();
-           plane.flyToDeparturePoint();
-           plane.parkAtTransferGate();
-       }
+        while (!departureAirport.informPilotToEndActivity()) {
+            departureAirport.informPlaneReadyForBoarding();
+            departureAirport.waitForAllInBoard();
+            plane.flyToDestinationPoint();
+            plane.announceArrival();
+            plane.flyToDeparturePoint();
+            plane.parkAtTransferGate();
+        }
         GenericIO.writelnString("Ended Pilot activity");
     }
 

@@ -4,7 +4,6 @@ import Communication.ClientCom;
 import Communication.Message;
 import Communication.MessageType;
 
-
 /**
  * Destination Airport stub. Class used to communicate with the departure
  * airport using TCP communication channels.
@@ -48,6 +47,25 @@ public class DestinationAirport {
         }
 
         Message msg = new Message(MessageType.LEAVE_AIRPORT);
+        com.writeObject(msg);
+        Message inMessage = (Message) com.readObject();
+        com.close();
+    }
+
+    /**
+     * Message sent to end the activity.
+     */
+    public void serviceEnd() {
+        ClientCom com = new ClientCom(serverHostName, serverPortNumb);
+
+        while (!com.open()) {
+            try {
+                Thread.currentThread().sleep((long) (10));
+            } catch (InterruptedException ex) {
+            }
+        }
+
+        Message msg = new Message(MessageType.SERVICE_END);
         com.writeObject(msg);
         Message inMessage = (Message) com.readObject();
         com.close();

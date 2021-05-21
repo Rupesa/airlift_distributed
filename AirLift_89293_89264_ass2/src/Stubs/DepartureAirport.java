@@ -110,7 +110,9 @@ public class DepartureAirport {
 
     /* ****************************** PASSENGER ***************************** */
     /**
-     * The passenger goes to the airport. It is called by a passenger.
+     * The passenger goes to the airport.It is called by a passenger.
+     *
+     * @param id passenger id
      */
     public void travelToAirport(int id) {
         ClientCom com = new ClientCom(serverHostName, serverPortNumb);
@@ -130,6 +132,8 @@ public class DepartureAirport {
 
     /**
      * The passenger waits in line for the check in.
+     *
+     * @param id passenger id
      */
     public void waitInQueue(int id) {
         ClientCom com = new ClientCom(serverHostName, serverPortNumb);
@@ -206,9 +210,10 @@ public class DepartureAirport {
         Message inMessage = (Message) com.readObject();
         com.close();
     }
-    
+
     /**
      * The pilot stops his activity when the hostess tells him to.
+     *
      * @return the value of the hostessInformPilotToEndActivity variable
      */
     public boolean informPilotToEndActivity() {
@@ -226,5 +231,25 @@ public class DepartureAirport {
         Message inMessage = (Message) com.readObject();
         com.close();
         return inMessage.informPilotToEndActivity();
+    }
+
+    /**
+     * Message sent to end the activity.
+     */
+    public void serviceEnd() {
+        ClientCom com = new ClientCom(serverHostName, serverPortNumb);
+
+        while (!com.open()) {
+            try {
+                Thread.currentThread().sleep((long) (10));
+            } catch (InterruptedException ex) {
+            }
+        }
+
+        System.out.println("Depart serviceEnd Stub");
+        Message msg = new Message(MessageType.SERVICE_END);
+        com.writeObject(msg);
+        Message inMessage = (Message) com.readObject();
+        com.close();
     }
 }

@@ -83,7 +83,7 @@ public class DepartureAirport {
      */
     public synchronized void waitForNextFlight() {
         /* change state of hostess to WTFL */
-        if (hostessState == "RDTF") {
+        if (hostessState.equals("RDTF")) {
             repos.updateHostessState(HostessState.WAIT_FOR_FLIGHT, currentPassenger);
             hostessState = "WTFL";
         }
@@ -139,7 +139,7 @@ public class DepartureAirport {
         /* change state of hostess to CKPS */
         repos.updateHostessState(HostessState.CHECK_PASSENGER, currentPassenger);
         hostessState = "CKPS";
-        
+
         /* ask for documents from the passenger */
         GenericIO.writelnString("(04) Hostess asked passenger for documents");
         hostessAsksPassengerForDocuments = true;
@@ -186,7 +186,7 @@ public class DepartureAirport {
             /* change state of hostess to RDTF */
             repos.updateHostessState(HostessState.READY_TO_FLY, currentPassenger);
             hostessState = "RDTF";
-            
+
             /* wait for the pilot to report that he is ready to board */
             while (pilotInformPlaneReadyForBoarding) {
                 try {
@@ -202,7 +202,9 @@ public class DepartureAirport {
 
     /* ****************************** PASSENGER ***************************** */
     /**
-     * The passenger goes to the airport. It is called by a passenger.
+     * The passenger goes to the airport.It is called by a passenger.
+     *
+     * @param id passenger id
      */
     public synchronized void travelToAirport(int id) {
         /* going to airport */
@@ -215,15 +217,15 @@ public class DepartureAirport {
     }
 
     /**
-     * The passenger waits in line for the check in. It is called by a
-     * passenger.
+     * The passenger waits in line for the check in.It is called by a passenger.
+     *
+     * @param id passenger id
      */
     public synchronized void waitInQueue(int id) {
         /* change state of passenger to INQE */
         repos.updatePassengerState(PassengerState.IN_QUEUE, id);
-        
         notifyAll();
-        
+
         /* wait in line until the hostess starts checking in */
         GenericIO.writelnString("(10) Passenger " + id + " is waiting in queue");
         while (passengers.contains(id)) {
@@ -324,5 +326,7 @@ public class DepartureAirport {
      */
     public synchronized void serviceEnd() {
         MainProgram.serviceEnd = true;
+        System.out.println("Depart serviceEnd SharedRegion = " + MainProgram.serviceEnd);
+        repos.serviceEnd();
     }
 }

@@ -1,6 +1,7 @@
 package Passenger.Main;
 
 import EntitiesState.PassengerState;
+import SimulationParameters.SimulationParameters;
 import Stubs.DepartureAirport;
 import Stubs.DestinationAirport;
 import Stubs.Plane;
@@ -25,6 +26,11 @@ public class Passenger extends Thread {
      * Instance of the Passenger.
      */
     private final Plane plane;
+
+    /**
+     * Count the number of passengers that finish the activity.
+     */
+    private static int count;
 
     /**
      * Id of Passenger
@@ -52,6 +58,7 @@ public class Passenger extends Thread {
         this.plane = plane;
         this.idPassenger = id;
         this.state = PassengerState.GOING_TO_AIRPORT;
+        this.count = 0;
     }
 
     @Override
@@ -65,6 +72,22 @@ public class Passenger extends Thread {
         plane.waitForEndOfFlight();
         plane.leaveThePlane(getPassengerId());
         destinationAirport.leaveAirport();
+        count++;
+        if (count >= SimulationParameters.TTL_PASSENGER) {
+            
+            System.out.println("PASS1");
+            // manda terminar o servico (serviceEnd = true)
+            destinationAirport.serviceEnd();
+            System.out.println("PASS2");
+            // o servico nao desliga imediatamente porque a variavel so e verficada na proxima itercacao do ciclo while, chamando novamente esta funcao, vai forcar uma nova verificacao da condicao
+            destinationAirport.serviceEnd();
+            System.out.println("PASS3");
+            plane.serviceEnd();
+            System.out.println("PASS4");
+            departureAirport.serviceEnd();
+            System.out.println("PASS5");
+
+        }
         GenericIO.writelnString("Ended Passenger " + getPassengerId() + " activity");
     }
 

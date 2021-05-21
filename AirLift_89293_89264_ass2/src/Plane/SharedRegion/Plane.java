@@ -44,9 +44,9 @@ public class Plane {
     }
 
     /**
-     * DestinationAirport class constructor.
+     * Plane class constructor.
      *
-     * @param repos
+     * @param repos reference to the general repository
      */
     public Plane(GeneralRepos repos) {
         this.repos = repos;
@@ -54,12 +54,14 @@ public class Plane {
 
     /* ****************************** PASSENGER ***************************** */
     /**
-     * The passenger boards the plane. It is called by a passenger.
+     * The passenger boards the plane.It is called by a passenger.
+     *
+     * @param id passenger id
      */
     public synchronized void boardThePlane(int id) {
         /* change state of passenger to INFL */
         repos.updatePassengerState(PassengerState.IN_FLIGHT, id);
-        
+
         /* add passenger to the queue of passengers */
         try {
             passengers.write(id);
@@ -86,8 +88,10 @@ public class Plane {
 
     /**
      * The passenger leaves the plane and, if he is the last to leave, notifies
-     * the pilot that he is the last passenger of the plane. It is called by a
+     * the pilot that he is the last passenger of the plane.It is called by a
      * passenger.
+     *
+     * @param id passenger id
      */
     public synchronized void leaveThePlane(int id) {
         /* remove passenger from the queue of passangers */
@@ -96,7 +100,7 @@ public class Plane {
 
         /* change state of passanger to ATDS */
         repos.updatePassengerState(PassengerState.AT_DESTINATION, id);
-        
+
         /* the last passenger notifies the pilot that he is the last */
         if (passengers.empty()) {
             lastPassengerLeaveThePlane = true;
@@ -189,5 +193,6 @@ public class Plane {
      */
     public synchronized void serviceEnd() {
         MainProgram.serviceEnd = true;
+        System.out.println("Plane serviceEnd SharedRegion = " + MainProgram.serviceEnd);
     }
 }

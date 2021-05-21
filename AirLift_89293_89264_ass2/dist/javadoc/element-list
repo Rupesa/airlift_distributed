@@ -1,0 +1,16 @@
+commInfra
+Communication
+DepartureAirport.Main
+DepartureAirport.SharedRegion
+DestinationAirport.Main
+DestinationAirport.SharedRegion
+EntitiesState
+GeneralRepos.Main
+GeneralRepos.SharedRegion
+Hostess.Main
+Passenger.Main
+Pilot.Main
+Plane.Main
+Plane.SharedRegion
+SimulationParameters
+Stubs

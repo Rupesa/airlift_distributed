@@ -5,13 +5,12 @@ import Stubs.DepartureAirport;
 import genclass.GenericIO;
 
 /**
- * Main hostess program.
- * Initialize stubs and start hostess lifecycle.
+ * Main hostess program. Initialize stubs and start hostess lifecycle.
  */
 public class MainProgram {
-    
+
     public static void main(String args[]) {
-        
+
         /**
          * Stub initialization.
          */
@@ -20,13 +19,13 @@ public class MainProgram {
         /**
          * Hostess lifecycle start.
          */
-        Hostess hostess = new Hostess("Hostess", departureAirport, SimulationParameters.TTL_PASSENGER); 
+        Hostess hostess = new Hostess("Hostess", departureAirport, SimulationParameters.TTL_PASSENGER);
         hostess.start();
         try {
             hostess.join();
         } catch (InterruptedException ex) {
             ex.printStackTrace();
         }
-        GenericIO.writelnString ("The hostess has terminated.");
-    }  
+        GenericIO.writelnString("The hostess has terminated.");
+    }
 }

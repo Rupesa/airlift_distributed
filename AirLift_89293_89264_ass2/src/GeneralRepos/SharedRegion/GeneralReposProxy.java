@@ -4,7 +4,6 @@ import Communication.Message;
 import Communication.MessageType;
 import Communication.ServerCom;
 
-
 /**
  * Proxy for the general repository shared region. Implements the ISharedRegion
  * interface, and listens to the requests, processes them and replies.
@@ -62,11 +61,11 @@ public class GeneralReposProxy implements ISharedRegion {
                 outMessage = new Message(MessageType.STATUS_OK);
                 break;
             }
-//            case SERVICE_END: {
-//                repos.serviceEnd();
-//                outMessage = new Message(MessageType.STATUS_OK);
-//                break;
-//            }
+            case SERVICE_END: {
+                repos.serviceEnd();
+                outMessage = new Message(MessageType.STATUS_OK);
+                break;
+            }
         }
         return outMessage;
     }

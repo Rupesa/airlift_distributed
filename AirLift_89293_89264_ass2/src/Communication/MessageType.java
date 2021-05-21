@@ -25,7 +25,9 @@ public enum MessageType {
      * Update the state of the pilot.
      */
     UPDATE_PILOT_STATE,
-    
+    /**
+     * Update the state of the flight.
+     */
     UPDATE_INFO_FLIGHT_STATE,
     /**
      * The passenger goes to the airport.
