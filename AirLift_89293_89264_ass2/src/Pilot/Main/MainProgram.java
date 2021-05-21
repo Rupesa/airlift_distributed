@@ -3,6 +3,7 @@ package Pilot.Main;
 import SimulationParameters.SimulationParameters;
 import Stubs.DepartureAirport;
 import Stubs.Plane;
+import Stubs.DestinationAirport;
 import genclass.GenericIO;
 
 /**
@@ -17,11 +18,12 @@ public class MainProgram {
          */
         DepartureAirport departureAirport = new DepartureAirport(SimulationParameters.DEPARTURE_AIRPORT_HOST_NAME, SimulationParameters.DEPARTURE_AIRPORT_PORT);
         Plane plane = new Plane(SimulationParameters.PLANE_HOST_NAME, SimulationParameters.PLANE_PORT);
+        DestinationAirport destinationAirport = new DestinationAirport(SimulationParameters.DESTINATION_AIRPORT_HOST_NAME, SimulationParameters.DESTINATION_AIRPORT_PORT);
 
         /**
          * Pilot lifecycle start.
          */
-        Pilot passenger = new Pilot("Pilot", departureAirport, plane);
+        Pilot passenger = new Pilot("Pilot", departureAirport, destinationAirport, plane);
         passenger.start();
         try {
             passenger.join();

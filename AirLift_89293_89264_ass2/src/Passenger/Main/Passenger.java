@@ -73,21 +73,21 @@ public class Passenger extends Thread {
         plane.leaveThePlane(getPassengerId());
         destinationAirport.leaveAirport();
         count++;
-        if (count >= SimulationParameters.TTL_PASSENGER) {
+        // if (count >= SimulationParameters.TTL_PASSENGER) {
             
-            System.out.println("PASS1");
-            // manda terminar o servico (serviceEnd = true)
-            destinationAirport.serviceEnd();
-            System.out.println("PASS2");
-            // o servico nao desliga imediatamente porque a variavel so e verficada na proxima itercacao do ciclo while, chamando novamente esta funcao, vai forcar uma nova verificacao da condicao
-            destinationAirport.serviceEnd();
-            System.out.println("PASS3");
-            plane.serviceEnd();
-            System.out.println("PASS4");
-            departureAirport.serviceEnd();
-            System.out.println("PASS5");
+        //     System.out.println("PASS1");
+        //     // manda terminar o servico (serviceEnd = true)
+        //     destinationAirport.serviceEnd();
+        //     System.out.println("PASS2");
+        //     // o servico nao desliga imediatamente porque a variavel so e verficada na proxima itercacao do ciclo while, chamando novamente esta funcao, vai forcar uma nova verificacao da condicao
+        //     destinationAirport.serviceEnd();
+        //     System.out.println("PASS3");
+        //     plane.serviceEnd();
+        //     System.out.println("PASS4");
+        //     departureAirport.serviceEnd();
+        //     System.out.println("PASS5");
 
-        }
+        // }
         GenericIO.writelnString("Ended Passenger " + getPassengerId() + " activity");
     }
 

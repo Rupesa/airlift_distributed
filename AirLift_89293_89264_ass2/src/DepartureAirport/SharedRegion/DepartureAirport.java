@@ -317,6 +317,7 @@ public class DepartureAirport {
     public synchronized boolean informPilotToEndActivity() {
         if (hostessInformPilotToEndActivity) {
             repos.reportFinalStatus();
+            MainProgram.serviceEnd = true;
         }
         return hostessInformPilotToEndActivity;
     }
@@ -326,7 +327,6 @@ public class DepartureAirport {
      */
     public synchronized void serviceEnd() {
         MainProgram.serviceEnd = true;
-        System.out.println("Depart serviceEnd SharedRegion = " + MainProgram.serviceEnd);
         repos.serviceEnd();
     }
 }

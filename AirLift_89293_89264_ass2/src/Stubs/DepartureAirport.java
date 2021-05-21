@@ -246,7 +246,6 @@ public class DepartureAirport {
             }
         }
 
-        System.out.println("Depart serviceEnd Stub");
         Message msg = new Message(MessageType.SERVICE_END);
         com.writeObject(msg);
         Message inMessage = (Message) com.readObject();

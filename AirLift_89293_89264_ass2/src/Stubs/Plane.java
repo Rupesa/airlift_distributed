@@ -180,7 +180,6 @@ public class Plane {
             } catch (InterruptedException ex) {
             }
         }
-        System.out.println("Plane serviceEnd Stub");
         Message msg = new Message(MessageType.SERVICE_END);
         com.writeObject(msg);
         Message inMessage = (Message) com.readObject();

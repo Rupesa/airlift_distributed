@@ -88,9 +88,7 @@ public class DepartureAirportProxy implements ISharedRegion {
                 break;
             }
             case SERVICE_END: {
-                System.out.println("Depart serviceEnd Proxy1");
                 departureAirport.serviceEnd();
-                System.out.println("Depart serviceEnd Proxy2");
                 outMessage = new Message(MessageType.STATUS_OK);
                 break;
             }

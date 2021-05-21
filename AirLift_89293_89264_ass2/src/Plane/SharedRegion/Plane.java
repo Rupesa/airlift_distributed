@@ -193,6 +193,5 @@ public class Plane {
      */
     public synchronized void serviceEnd() {
         MainProgram.serviceEnd = true;
-        System.out.println("Plane serviceEnd SharedRegion = " + MainProgram.serviceEnd);
     }
 }

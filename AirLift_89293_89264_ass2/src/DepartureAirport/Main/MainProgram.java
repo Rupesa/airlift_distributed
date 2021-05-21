@@ -46,9 +46,7 @@ public class MainProgram {
          * to the service provider.
          */
         while (!serviceEnd) {
-            System.out.println("Depart serviceEnd1 = " + serviceEnd);
             sconi = scon.accept();
-            System.out.println("Depart serviceEnd2 = " + serviceEnd);
             sp = new ServiceProvider(sconi, pdInt);
             sp.start();
         }

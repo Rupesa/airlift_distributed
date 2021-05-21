@@ -3,6 +3,7 @@ package Pilot.Main;
 import EntitiesState.PilotState;
 import Stubs.DepartureAirport;
 import Stubs.Plane;
+import Stubs.DestinationAirport;
 import genclass.GenericIO;
 
 /**
@@ -21,6 +22,11 @@ public class Pilot extends Thread {
     private final Plane plane;
 
     /**
+     * Instance of the destinationAirport.
+     */
+    private final DestinationAirport destinationAirport;
+
+    /**
      * Current pilot state.
      */
     private PilotState state;
@@ -32,10 +38,11 @@ public class Pilot extends Thread {
      * @param departureAirport instance of the departureAirport
      * @param plane instance of the plane
      */
-    public Pilot(String name, DepartureAirport departureAirport, Plane plane) {
+    public Pilot(String name, DepartureAirport departureAirport, DestinationAirport destinationAirport, Plane plane) {
         super(name);
         this.departureAirport = departureAirport;
         this.plane = plane;
+        this.destinationAirport = destinationAirport;
         this.state = PilotState.AT_TRANSFER_GATE;
     }
 
@@ -50,7 +57,17 @@ public class Pilot extends Thread {
             plane.flyToDeparturePoint();
             plane.parkAtTransferGate();
         }
-        GenericIO.writelnString("Ended Pilot activity");
+        try {
+            // manda terminar o servico (serviceEnd = true)
+            destinationAirport.serviceEnd();
+            // o servico nao desliga imediatamente porque a variavel so e verficada na proxima itercacao do ciclo while, chamando novamente esta funcao, vai forcar uma nova verificacao da condicao
+            destinationAirport.serviceEnd();
+            plane.serviceEnd();
+            plane.serviceEnd();
+            departureAirport.serviceEnd();
+            GenericIO.writelnString("Ended Pilot activity");
+        } catch (Exception e) {
+        }
     }
 
     /**

@@ -73,9 +73,7 @@ public class PlaneProxy implements ISharedRegion {
                 break;
             }
             case SERVICE_END: {
-                System.out.println("Plane serviceEnd Proxy1");
                 plane.serviceEnd();
-                System.out.println("Plane serviceEnd Proxy2");
                 outMessage = new Message(MessageType.STATUS_OK);
                 break;
             }
