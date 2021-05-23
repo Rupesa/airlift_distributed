@@ -2,7 +2,7 @@ bold=$(tput bold)
 normal=$(tput sgr0)
 
 echo "----------------------------------------------------------"
-echo "${bold}      AirLift Problem - Script Remote - Get rep.txt       ${normal}"
+echo "${bold}AirLift Problem - Script - Get rep.txt${normal}"
 echo "----------------------------------------------------------"
 
 export SSHPASS='sistemas2021'
